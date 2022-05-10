@@ -1,0 +1,14 @@
+<p-carousel [value]="movies" [page]="0"
+            [circular]="false" [responsiveOptions]="responsiveOptions">
+  <ng-template let-movie pTemplate="item">
+    <div class="movie-item">
+      <div class="p-mb-3">
+      </div>
+      <img class="rounded" src="{{movie.backdrop_path}}" alt="{{movie.title}}">
+      <h4 class="text-center">{{movie.title}}</h4>
+      <i>{{movie.overview}}</i>
+      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    </div>
+  </ng-template>
+</p-carousel>
+
