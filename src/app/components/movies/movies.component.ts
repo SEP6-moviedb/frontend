@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb.service'
-import { tmdbMovie } from '../models/movie-star.model';
+import { tmdbMovie } from '../../models/movie-star.model';
 
 @Component({
   selector: 'app-movies',

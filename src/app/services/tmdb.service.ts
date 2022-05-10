@@ -25,7 +25,15 @@ export class TmdbService {
   }
 
   getTrendingMovies() {
-    let apiUrl = baseUrl + `trending/movies/day?api_key=${apiKey}&language=en-US`;
+    let apiUrl = baseUrl + `trending/movie/day?api_key=${apiKey}&language=en-US`;
+    return this.http.get<any>(apiUrl)
+      .toPromise()
+      .then(res => <tmdbMovie[]>res.results)
+      .then(data => { return data; });
+  }
+
+  getRecommendationByGenre(genre: string) {
+    let apiUrl = baseUrl + `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genre}`;
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)

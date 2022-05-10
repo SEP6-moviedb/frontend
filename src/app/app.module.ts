@@ -8,9 +8,9 @@ import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MoviesComponent } from './movies/movies.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SliderComponent } from './slider/slider.component';
+import { MoviesComponent } from './components/movies/movies.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
