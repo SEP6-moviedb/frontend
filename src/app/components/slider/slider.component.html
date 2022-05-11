@@ -1,53 +1,15 @@
-<p-carousel [value]="trendingMovies" [autoplayInterval]="4000"
+<p-carousel [value]="movies" [autoplayInterval]="4000"
             [circular]="true" [responsiveOptions]="responsiveOptions">
   <ng-template pTemplate="header">
-    <h5 class="text-center">Trending</h5>
+    <h5 class="text-center">{{genre}}</h5>
   </ng-template>
   <ng-template let-movie pTemplate="item">
     <div class="movie-item">
       <div class="pb-1">
       </div>
-      <img class="rounded" src="{{movie.backdrop_path}}" alt="{{movie.title}}">
-      <h4 class="align-middle text-center" style="height: 56px">{{movie.title}}</h4>
+      <a href="specific-movie/{{movie.id}}"><img class="rounded" src="{{movie.backdrop_path}}" alt="{{movie.title}}">
+      <h4 class="align-middle text-center" style="height: 56px">{{movie.title}}</h4></a>
       <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
-      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
     </div>
   </ng-template>
 </p-carousel>
-
-
-<p-carousel [value]="actionMovies" [autoplayInterval]="4000"
-            [circular]="true" [responsiveOptions]="responsiveOptions">
-  <ng-template pTemplate="header">
-    <h5 class="text-center">Action</h5>
-  </ng-template>
-  <ng-template let-movie pTemplate="item">
-    <div class="movie-item">
-      <div class="pb-1">
-      </div>
-      <img class="rounded" src="{{movie.backdrop_path}}" alt="{{movie.title}}">
-      <h4 class="align-middle text-center" style="height: 56px">{{movie.title}}</h4>
-      <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
-      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-    </div>
-  </ng-template>
-</p-carousel>
-
-<p-carousel [value]="animationMovies" [autoplayInterval]="4000"
-            [circular]="true" [responsiveOptions]="responsiveOptions">
-  <ng-template pTemplate="header">
-    <h5 class="text-center">Animation</h5>
-  </ng-template>
-  <ng-template let-movie pTemplate="item">
-    <div class="movie-item">
-      <div class="pb-1">
-      </div>
-      <img class="rounded" src="{{movie.backdrop_path}}" alt="{{movie.title}}">
-      <h4 class="align-middle text-center" style="height: 56px">{{movie.title}}</h4>
-      <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
-      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-    </div>
-  </ng-template>
-</p-carousel>
-
-

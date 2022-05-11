@@ -7,9 +7,9 @@ export class Movie {
 export class tmdbMovie {
   poster_path!: string;
   video?: boolean;
-  vote_average?: number;
+  vote_average!: number;
   overview?: string;
-  release_date?: string;
+  release_date!: string;
   vote_count?: number;
   adult?: boolean;
   backdrop_path!:string;
@@ -21,4 +21,5 @@ export class tmdbMovie {
   original_title?: string;
   popularity?: number;
   media_type?: string;
+  stars!: number;
 }

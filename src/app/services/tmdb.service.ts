@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { tmdbMovie } from '../models/movie-star.model';
+
+const headers = new HttpHeaders().set('Content-Type', 'application/X-www-form-urlencoded');
 
 const baseUrl = 'https://api.themoviedb.org/3/';
 const apiKey = environment.tmdbApiKey;
@@ -13,6 +15,15 @@ const apiKey = environment.tmdbApiKey;
 export class TmdbService {
 
   constructor(private http: HttpClient) { }
+
+  search(term: string) {
+    let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
+    return this.http.get<any>(searchUrl)
+      .toPromise()
+      .then(res => <tmdbMovie[]>res.results)
+      .then(data => {
+        return data; });
+  }
 
   getGenreList(type: string): Observable<any> {
     const requestUrl = baseUrl + `genre/${type}/list?api_key=${apiKey}&language=en-US`;
@@ -37,6 +48,18 @@ export class TmdbService {
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
+      .then(data => { return data; });
+  }
+
+  getMovieByTmdbId(tmdbId: string) {
+    let findIdUrl = baseUrl + `movie/${tmdbId}/external_ids?api_key=${apiKey}`;
+    return this.http.get<any>(findIdUrl)
+      .toPromise()
+      .then(res =>{
+        let movieId = res.imdb_id;
+        let apiUrl = baseUrl + `find/${movieId}?api_key=${apiKey}&language=en-US&external_source=imdb_id`;
+        return this.http.get<any>(apiUrl).toPromise().then(res => <tmdbMovie>res.movie_results[0])
+      })
       .then(data => { return data; });
   }
 

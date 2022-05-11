@@ -10,9 +10,10 @@ import { tmdbMovie } from '../../models/movie-star.model';
 
 export class SliderComponent implements OnInit {
   responsiveOptions: any;
-  trendingMovies: tmdbMovie[] = [];
-  actionMovies: tmdbMovie[] = [];
-  animationMovies: tmdbMovie[] = [];
+  movies: tmdbMovie[] = [];
+
+  genre!: string;
+  @Input() genreId = '';
 
   constructor(private tmdbService: TmdbService) {
     this.responsiveOptions = [{
@@ -33,9 +34,10 @@ export class SliderComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.getMovieByGenre("28");
-    this.getMovieByGenre("16");
-    this.getTrendingMovies();
+    if (this.genreId === '0')
+      this.getTrendingMovies();
+    else
+      this.getMovieByGenre(this.genreId);
   }
 
   getTrendingMovies() {
@@ -47,7 +49,8 @@ export class SliderComponent implements OnInit {
           movie.title = movie.name;
         return movie;
       });
-      this.trendingMovies = movies;
+      this.movies = movies;
+      this.genre = "Trending"
     });
   }
 
@@ -60,14 +63,19 @@ export class SliderComponent implements OnInit {
           movie.title = movie.name;
         return movie;
       });
+      this.movies = movies;
+
+      // TODO: Rest of genres according to this list: https://www.themoviedb.org/talk/5daf6eb0ae36680011d7e6ee?language=da-DK
+      // DON'T COVER ALL, NOT NECESSARY
       switch (genre) {
         case "28":
-          this.actionMovies = movies;
+          this.genre = "Action";
           break;
         case "16":
-          this.animationMovies = movies
+          this.genre = "Animation"
           break;
         default:
+          this.genre = "Unknown"
           break;
       }
     });

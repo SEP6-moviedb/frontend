@@ -3,14 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie-star.model';
 
-const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/WeatherForecast';
+const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiHttpService {
   constructor(private http: HttpClient) { }
+
+  rateMovie(rating: any) {
+    let apiUrl = baseUrl + `userratings?movieid=${rating.movieId}&rating=${rating.rating}&userid=${rating.userId}`;
+    this.http.post(apiUrl, "").subscribe(res => res);
+  }
+
   getAll(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(baseUrl);
+    let apiUrl = baseUrl + `WeatherForecast`;
+    return this.http.get<Movie[]>(apiUrl);
   }
   get(id: any): Observable<Movie> {
     return this.http.get(`${baseUrl}/${id}`);
