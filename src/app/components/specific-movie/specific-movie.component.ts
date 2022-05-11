@@ -34,8 +34,8 @@ export class SpecificMovieComponent implements OnInit {
 
   getMovieById(id: string){
     this.tmdbService.getMovieByTmdbId(id).then(movie => {
-      movie.backdrop_path = 'http://image.tmdb.org/t/p/original/' + movie.backdrop_path;
-      movie.poster_path = 'http://image.tmdb.org/t/p/original/' + movie.poster_path;
+      movie.backdrop_path = 'http://image.tmdb.org/t/p/w500/' + movie.backdrop_path;
+      movie.poster_path = 'http://image.tmdb.org/t/p/w500/' + movie.poster_path;
       if (movie.title == undefined)
         movie.title = movie.name;
       this.movie = movie;

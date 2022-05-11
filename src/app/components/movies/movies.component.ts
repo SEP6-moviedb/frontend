@@ -38,8 +38,8 @@ export class MoviesComponent implements OnInit {
         this.sliderContainer.push({
           id: trendingMovie.id,
           title: trendingMovie.title,
-          image: ('http://image.tmdb.org/t/p/original/' + trendingMovie.backdrop_path),
-          posterPath: ('http://image.tmdb.org/t/p/original/' + trendingMovie.poster_path),
+          image: ('http://image.tmdb.org/t/p/w500' + trendingMovie.backdrop_path),
+          posterPath: ('http://image.tmdb.org/t/p/w500/' + trendingMovie.poster_path),
           modelItem: trendingMovie
         });
       });
