@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Movie } from '../models/movie-star.model';
+import {comment, Movie} from '../models/movie-star.model';
 
 const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
 @Injectable({
@@ -11,14 +11,31 @@ export class ApiHttpService {
   constructor(private http: HttpClient) { }
 
   rateMovie(rating: any) {
+    console.log(rating)
     let apiUrl = baseUrl + `userratings?movieid=${rating.movieId}&rating=${rating.rating}&userid=${rating.userId}`;
     this.http.post(apiUrl, "").subscribe(res => res);
+  }
+
+  getCommunityAverage(movieId: any): Observable<any> {
+    let apiUrl = baseUrl + `userratings?movieid=${movieId}`;
+    return this.http.get<any>(apiUrl);
   }
 
   getAll(): Observable<Movie[]> {
     let apiUrl = baseUrl + `WeatherForecast`;
     return this.http.get<Movie[]>(apiUrl);
   }
+
+  getComments(movieId: any): Observable<comment[]> {
+    let apiUrl = baseUrl + `usercomments?movieid=${movieId}`;
+    return this.http.get<comment[]>(apiUrl);
+  }
+
+  postComment(movieId: any, userName: any, comment: string) {
+    let apiUrl = baseUrl + `usercomments?movieid=${movieId}&comment=${comment}&username=${userName}`;
+    this.http.post(apiUrl, "").subscribe(res => res);
+  }
+
   get(id: any): Observable<Movie> {
     return this.http.get(`${baseUrl}/${id}`);
   }

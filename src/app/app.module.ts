@@ -20,6 +20,9 @@ import { ApiHttpService } from 'src/app/services/api-http.service';
 import { SpecificMovieComponent } from './components/specific-movie/specific-movie.component'
 import { ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { SearchComponent } from './components/search/search.component';
+import {AuthenticationInterceptor} from "./authentication.interceptor";
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +32,12 @@ import { SearchComponent } from './components/search/search.component';
     MoviesComponent,
     SliderComponent,
     SpecificMovieComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
-      {path: 'movies', component: MoviesComponent},
-      {path: 'tool-bar', component: ToolBarComponent},
-      {path: 'specific-movie/:tmdbId', component: SpecificMovieComponent},
-      {path: '', redirectTo: '/tool-bar', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent},
     ]),
     HttpClientModule,
@@ -45,11 +46,14 @@ import { SearchComponent } from './components/search/search.component';
     CarouselModule,
     ButtonModule,
     ToastModule,
-    BrowserAnimationsModule, ReactiveFormsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     ApiHttpService,
-    TmdbService
+    TmdbService,
+    AuthenticationInterceptor
   ],
   bootstrap: [AppComponent]
 })

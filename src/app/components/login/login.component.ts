@@ -1,0 +1,51 @@
+import { Component, OnInit } from '@angular/core';
+import {EmailValidator, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import {AuthenticationService} from "../../services/authentication.service";
+import {Location} from '@angular/common';
+import {first} from "rxjs";
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private location: Location
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  get usernameControl(): FormControl {
+    return this.loginForm.get('username') as FormControl;
+  }
+
+  get passwordControl(): FormControl {
+    return this.loginForm.get('password') as FormControl;
+  }
+
+  get f() { return this.loginForm.controls; }
+
+  login(): void {
+    let username = this.f['username'].value
+    let password = this.f['password'].value
+    this.authenticationService.login(username, password).subscribe(r => {
+      if (r === 200)
+        this.router.navigateByUrl("/");
+      else
+        this.router.navigateByUrl("/login")
+    });
+  }
+}

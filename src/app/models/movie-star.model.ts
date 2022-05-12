@@ -23,3 +23,10 @@ export class tmdbMovie {
   media_type?: string;
   stars!: number;
 }
+
+export interface comment {
+  movieId: string;
+  comment: string;
+  userId: string;
+  commentId: number;
+}

@@ -41,8 +41,8 @@ export class SearchComponent implements OnInit {
 
     this.tmdbService.search(search).then(movies =>{
       movies.forEach(movie => {
-        movie.backdrop_path = 'http://image.tmdb.org/t/p/w500/' + movie.backdrop_path;
-        movie.poster_path = 'http://image.tmdb.org/t/p/w500/' + movie.poster_path;
+        movie.backdrop_path = 'http://image.tmdb.org/t/p/w400' + movie.backdrop_path;
+        movie.poster_path = 'http://image.tmdb.org/t/p/w400' + movie.poster_path;
         if (movie.title == undefined)
           movie.title = movie.name;
         return movie;

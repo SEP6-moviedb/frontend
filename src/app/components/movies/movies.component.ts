@@ -38,8 +38,8 @@ export class MoviesComponent implements OnInit {
         this.sliderContainer.push({
           id: trendingMovie.id,
           title: trendingMovie.title,
-          image: ('http://image.tmdb.org/t/p/w500' + trendingMovie.backdrop_path),
-          posterPath: ('http://image.tmdb.org/t/p/w500/' + trendingMovie.poster_path),
+          image: ('http://image.tmdb.org/t/p/w400' + trendingMovie.backdrop_path),
+          posterPath: ('http://image.tmdb.org/t/p/w400' + trendingMovie.poster_path),
           modelItem: trendingMovie
         });
       });
@@ -49,8 +49,8 @@ export class MoviesComponent implements OnInit {
   initMovieContainer() {
     this.tmdbService.getTrendingList("movies").subscribe(trending => {
       trending.results.forEach((movie: tmdbMovie) => {
-        movie.backdrop_path = 'http://image.tmdb.org/t/p/original/' + movie.backdrop_path;
-        movie.poster_path = 'http://image.tmdb.org/t/p/original/' + movie.poster_path;
+        movie.backdrop_path = 'http://image.tmdb.org/t/p/w400' + movie.backdrop_path;
+        movie.poster_path = 'http://image.tmdb.org/t/p/w400' + movie.poster_path;
         this.movieContainer.push(movie);
       });
     });
