@@ -27,6 +27,6 @@ export class tmdbMovie {
 export interface comment {
   movieId: string;
   comment: string;
-  userId: string;
+  username: string;
   commentId: number;
 }

@@ -23,6 +23,7 @@ import { SearchComponent } from './components/search/search.component';
 import {AuthenticationInterceptor} from "./authentication.interceptor";
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { HomeComponent } from './components/home/home.component';
   providers: [
     ApiHttpService,
     TmdbService,
-    AuthenticationInterceptor
+    AuthenticationInterceptor,
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

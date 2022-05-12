@@ -57,8 +57,8 @@ export class SliderComponent implements OnInit {
   getMovieByGenre(genre: string) {
     this.tmdbService.getRecommendationByGenre(genre).then(movies => {
       movies.forEach(movie => {
-        movie.backdrop_path = 'http://image.tmdb.org/t/p/w400' + movie.backdrop_path;
-        movie.poster_path = 'http://image.tmdb.org/t/p/w400' + movie.poster_path;
+        movie.backdrop_path = 'https://image.tmdb.org/t/p/w400' + movie.backdrop_path;
+        movie.poster_path = 'https://image.tmdb.org/t/p/w400' + movie.poster_path;
         if (movie.title == undefined)
           movie.title = movie.name;
         return movie;
