@@ -43,8 +43,8 @@ export class SliderComponent implements OnInit {
   getTrendingMovies() {
     this.tmdbService.getTrendingMovies().then(movies => {
       movies.forEach(movie => {
-        movie.backdrop_path = 'http://image.tmdb.org/t/p/original/' + movie.backdrop_path;
-        movie.poster_path = 'http://image.tmdb.org/t/p/original/' + movie.poster_path;
+        movie.backdrop_path = 'https://image.tmdb.org/t/p/original/' + movie.backdrop_path;
+        movie.poster_path = 'https://image.tmdb.org/t/p/original/' + movie.poster_path;
         if (movie.title == undefined)
           movie.title = movie.name;
         return movie;
