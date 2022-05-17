@@ -52,5 +52,5 @@ jobs:
         with:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
           branch: gh-pages
-          folder: sep7-web-app
+          folder: sep6-web-app
   
