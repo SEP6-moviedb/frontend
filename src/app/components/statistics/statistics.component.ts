@@ -29,9 +29,9 @@ export class StatisticsComponent implements OnInit {
   setStatistics() {
     this.apiHttpService.getStatistics().subscribe(x => {
       if (x !== undefined)
-        console.log(x + " <--- setStatistics in statistics.component qqq")
-        this.statistics = x
+        console.log(x + " <--- setStatistics in statistics.component qqq");
+        console.log(x.avgMovieRatingsByActor + " <--- setStatistics in statistics.component qqq");
+        //this.statistics = x
     })
   }
-
 }

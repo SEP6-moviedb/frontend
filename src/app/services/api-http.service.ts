@@ -59,14 +59,16 @@ export class ApiHttpService {
 
 
 
-  getStatistics(): Observable<Statistics> {
-    let apiUrl = baseUrl + `statistics?`;
+  getStatistics(): Observable<any> {
+    let apiUrl = "https://localhost:7183/" + `statistics?`;
     console.log(apiUrl + " <--- apiUrl qqq")
-    let statisticsFromApi = this.http.get<Statistics>(apiUrl);
-    console.log(statisticsFromApi + " <--- statisticsFromApi qqq")
-    return statisticsFromApi;
+    let obs = this.http.get<any>(apiUrl);
+    obs.subscribe(res => {
+      console.log(res);
+      return res;
+    });
+    return obs;
   }
-
 
 
 }
