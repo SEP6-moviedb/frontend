@@ -1,4 +1,5 @@
 # SEP6WebApp
+[![Build and Test](https://github.com/SEP6-moviedb/frontend/actions/workflows/Build%20and%20Test.yml/badge.svg)](https://github.com/SEP6-moviedb/frontend/actions/workflows/Build%20and%20Test.yml)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
