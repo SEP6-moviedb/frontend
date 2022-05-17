@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MoviesComponent } from './movies.component';
+import {HttpClientModule} from "@angular/common/http";
+import {SliderComponent} from "../slider/slider.component";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
@@ -8,7 +11,9 @@ describe('MoviesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MoviesComponent ]
+      imports: [HttpClientModule],
+      declarations: [ MoviesComponent, SliderComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   });
