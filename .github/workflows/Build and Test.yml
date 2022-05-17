@@ -25,4 +25,17 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run test:prod
+    - run: npm run build:prod
     - run: npm run lint
+    - name: Archive build
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist
+    - name: Archive code coverage result
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: coverage
