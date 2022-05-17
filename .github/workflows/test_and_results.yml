@@ -5,9 +5,17 @@ name: Test and results
 
 on:
   push:
-    branches: [ main, testing ]
+    branches: 
+      '**'
+    branches-ignore:
+      - master
+      - gh-pages
   pull_request:
-    branches: [ main, testing ]
+    branches:
+      '**'
+    branches-ignore:
+      - master
+      - gh-pages
 
 jobs:
   test:
