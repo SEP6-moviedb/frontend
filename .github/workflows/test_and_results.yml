@@ -48,4 +48,4 @@ jobs:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
           branch: main
           folder: sep6-web-app
-          repositoryName: SEP6-moviedb/frontend-test-results
+          repository-name: SEP6-moviedb/frontend-test-results
