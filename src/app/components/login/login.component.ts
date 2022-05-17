@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {EmailValidator, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthenticationService} from "../../services/authentication.service";
 import {Location} from '@angular/common';
-import {first} from "rxjs";
+import {
+  SocialAuthService,
+  GoogleLoginProvider,
+  SocialUser,
+} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +15,7 @@ import {first} from "rxjs";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  socialUser!: SocialUser;
   private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   loginForm = new FormGroup({
@@ -22,10 +26,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private socialAuthService: SocialAuthService
   ) { }
 
   ngOnInit(): void {
+    this.socialAuthService.authState.subscribe(user => {
+      this.socialUser = user;
+      console.log(this.socialUser);
+    });
+    console.log(this.socialAuthService)
   }
 
   get usernameControl(): FormControl {
@@ -47,5 +57,9 @@ export class LoginComponent implements OnInit {
       else
         this.router.navigateByUrl("/login")
     });
+  }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }
