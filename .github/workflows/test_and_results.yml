@@ -7,12 +7,7 @@ on:
   push:
     branches: 
       - '**'
-      - '!master'
-      - '!gh-pages'
-  pull_request:
-    branches: 
-      - '**'
-      - '!master'
+      - '!main'
       - '!gh-pages'
 
 jobs:
