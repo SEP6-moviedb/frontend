@@ -50,7 +50,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: deploy_dist/angular-demo
   
