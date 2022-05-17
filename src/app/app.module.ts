@@ -26,6 +26,11 @@ import {AuthenticationInterceptor} from "./authentication.interceptor";
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig, GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
+import {environment} from "../environments/environment.prod";
 
 
 
@@ -55,9 +60,22 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     ToastModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SocialLoginModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.googleClientId),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
     ApiHttpService,
     TmdbService,
     AuthenticationInterceptor,

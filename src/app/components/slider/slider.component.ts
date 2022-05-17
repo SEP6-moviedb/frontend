@@ -8,6 +8,7 @@ import { tmdbMovie } from '../../models/movie-star.model';
   styleUrls: ['./slider.component.css'],
 })
 
+
 export class SliderComponent implements OnInit {
   responsiveOptions: any;
   movies: tmdbMovie[] = [];
