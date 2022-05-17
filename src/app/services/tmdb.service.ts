@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { tmdbMovie } from '../models/movie-star.model';
+import {popularActor, tmdbActor, tmdbMovie} from '../models/movie-star.model';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -14,25 +14,28 @@ const apiKey = environment.tmdbApiKey;
 })
 export class TmdbService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  search2(term: string): Observable<any>{
+  search2(term: string): Observable<any> {
     let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
     let obs = this.http.get<any>(searchUrl);
     obs.toPromise()
       .then(res => res);
     //<tmdbMovie[]>res.results
-      //.then(data => {
-      //  return data; });
+    //.then(data => {
+    //  return data; });
     return obs;
   }
-  search(term: string){
+
+  search(term: string) {
     let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
     return this.http.get<any>(searchUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
       .then(data => {
-        return data; });
+        return data;
+      });
   }
 
   getGenreList(type: string): Observable<any> {
@@ -50,7 +53,9 @@ export class TmdbService {
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
-      .then(data => { return data; });
+      .then(data => {
+        return data;
+      });
   }
 
   getRecommendationByGenre(genre: string) {
@@ -58,19 +63,32 @@ export class TmdbService {
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
-      .then(data => { return data; });
+      .then(data => {
+        return data;
+      });
   }
 
   getMovieByTmdbId(tmdbId: string) {
     let findIdUrl = baseUrl + `movie/${tmdbId}/external_ids?api_key=${apiKey}`;
     return this.http.get<any>(findIdUrl)
       .toPromise()
-      .then(res =>{
+      .then(res => {
         let movieId = res.imdb_id;
         let apiUrl = baseUrl + `find/${movieId}?api_key=${apiKey}&language=en-US&external_source=imdb_id`;
         return this.http.get<any>(apiUrl).toPromise().then(res => <tmdbMovie>res.movie_results[0])
       })
-      .then(data => { return data; });
+      .then(data => {
+        return data;
+      });
   }
 
+  getPopularActor() {
+    let apiUrl = baseUrl + `/person/popular?api_key=${apiKey}&language=en-US&page=1`;
+    return this.http.get<any>(apiUrl)
+      .toPromise()
+      .then(res => <popularActor[]>res.results)
+      .then(data => {
+        return data;
+      });
+  }
 }

@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviesComponent } from './components/movies/movies.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { ActorsComponent } from './components/actors/actors.component';
+import { TableComponent } from "./components/table/table.component";
 
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
@@ -25,6 +27,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,9 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     SpecificMovieComponent,
     SearchComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ActorsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
