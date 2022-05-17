@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb.service'
 import { ApiHttpService } from 'src/app/services/api-http.service'
 import {comment, tmdbMovie} from '../../models/movie-star.model';
@@ -12,7 +12,7 @@ import {AuthenticationService} from "../../services/authentication.service";
   templateUrl: './specific-movie.component.html',
   styleUrls: ['./specific-movie.component.css']
 })
-export class SpecificMovieComponent implements OnInit {
+export class SpecificMovieComponent implements OnInit, OnDestroy {
 
   movie: tmdbMovie = new tmdbMovie();
   comments: comment[] = [];

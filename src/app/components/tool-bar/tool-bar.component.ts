@@ -3,7 +3,7 @@ import { Movie } from 'src/app/models/movie-star.model';
 import { ApiHttpService } from 'src/app/services/api-http.service'
 
 @Component({
-  selector: 'tool-bar',
+  selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.css']
 })

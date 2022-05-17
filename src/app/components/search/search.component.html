@@ -8,7 +8,7 @@
 </div>
 <div class="row wrapper">
   <div class="col-md-3" *ngFor="let movie of results | async">
-    <div class="movie-item" *ngIf="movie.poster_path != 'https://image.tmdb.org/t/p/w400/null'">
+    <div class="movie-item" *ngIf="movie.poster_path !== 'https://image.tmdb.org/t/p/w400/null'">
       <div class="pb-1">
       </div>
       <a href="#/specific-movie/{{movie.id}}"><img class="rounded" src="{{movie.poster_path}}" alt="{{movie.title}}">

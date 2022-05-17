@@ -1,4 +1,5 @@
 ﻿<main class="form-signin">
+  <button class="btn btn-social-icon btn-google mx-1" (click)="loginWithGoogle()"><span class="fab fa-google">Login with google</span></button>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <h1 class="h3 mb-3 fw-normal">Sign In</h1>
     <div class="form-floating">

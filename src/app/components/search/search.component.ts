@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { Observable } from 'rxjs';
-import { tmdbMovie } from '../../models/movie-star.model';
 import {
   debounceTime,
   distinctUntilChanged,
