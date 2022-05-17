@@ -24,6 +24,7 @@ import {AuthenticationInterceptor} from "./authentication.interceptor";
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     SpecificMovieComponent,
     SearchComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
