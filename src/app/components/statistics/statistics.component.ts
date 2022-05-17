@@ -30,8 +30,12 @@ export class StatisticsComponent implements OnInit {
     this.apiHttpService.getStatistics().subscribe(x => {
       if (x !== undefined)
         console.log(x + " <--- setStatistics in statistics.component qqq");
-        console.log(x.avgMovieRatingsByActor + " <--- setStatistics in statistics.component qqq");
-        //this.statistics = x
+      if (x.avgMovieRatingsByActor !== undefined) {
+        console.log(x.avgMovieRatingsByActor[1].key + " <--- setStatistics in statistics.component KEY qqq");
+        console.log(x.avgMovieRatingsByActor[1].value + " <--- setStatistics in statistics.component VALUE qqq");
+      }
+
+        this.statistics = x
     })
   }
 }

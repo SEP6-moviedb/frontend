@@ -59,10 +59,10 @@ export class ApiHttpService {
 
 
 
-  getStatistics(): Observable<any> {
+  getStatistics(): Observable<Statistics> {
     let apiUrl = "https://localhost:7183/" + `statistics?`;
     console.log(apiUrl + " <--- apiUrl qqq")
-    let obs = this.http.get<any>(apiUrl);
+    let obs = this.http.get<Statistics>(apiUrl);
     obs.subscribe(res => {
       console.log(res);
       return res;
