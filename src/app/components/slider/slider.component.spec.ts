@@ -87,7 +87,7 @@ describe('SliderComponent', () => {
     await component.ngOnInit()
 
     // Assert
-    expect(component.movies[0].title).toEqual("Super cool actions movie");
+    expect(component.movies[0].title).toEqual("Super cool action movie");
     expect(component.movies[0].poster_path).toEqual("https://image.tmdb.org/t/p/w400/action-poster.com");
     expect(component.genre).toEqual("Action")
     //expect(component.getMovieByGenre).toHaveBeenCalledWith("28")
