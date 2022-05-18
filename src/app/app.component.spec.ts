@@ -6,6 +6,24 @@ import {AuthenticationService} from "./services/authentication.service";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    let store:any = { };
+
+    const mockLocalStorage = {
+      removeItem: (key: string) => {
+        delete store[key];
+      }
+    };
+
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+
+    const mockAuth = {
+      logout: (() => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("username")
+      })
+    }
+
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule, HttpClientModule
@@ -14,9 +32,10 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        AuthenticationService
+        { provide: AuthenticationService, useValue: mockAuth }
       ]
     }).compileComponents();
+
   });
 
   it('should create the app', () => {
@@ -28,13 +47,21 @@ describe('AppComponent', () => {
   it(`should have as title 'SEP6WebApp'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('SEP6WebApp');
+    expect(app.title).toEqual('MovieStar');
   });
 
-  xit('should render title', () => {
+  it('should log out and remove localstorage items', () => {
+    // Arrange
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('SEP6WebApp app is running!');
+    const app = fixture.componentInstance;
+
+    // Act
+    app.logout();
+
+    // Assert
+    expect(localStorage.removeItem).toHaveBeenCalledTimes(2)
+    expect(localStorage.removeItem).toHaveBeenCalledWith("token")
+    expect(localStorage.removeItem).toHaveBeenCalledWith("username")
   });
+
 });
