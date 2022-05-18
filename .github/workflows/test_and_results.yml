@@ -6,16 +6,9 @@ name: Test and results
 on:
   push:
     branches: 
-      '**'
-    branches-ignore:
-      - master
-      - gh-pages
-  pull_request:
-    branches:
-      '**'
-    branches-ignore:
-      - master
-      - gh-pages
+      - '**'
+      - '!main'
+      - '!gh-pages'
 
 jobs:
   test:
