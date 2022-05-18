@@ -50,7 +50,8 @@ export class TmdbService {
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
-      .then(data => { return data; });
+      .then(data => {
+        return data; });
   }
 
   getRecommendationByGenre(genre: string) {

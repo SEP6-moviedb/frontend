@@ -46,7 +46,6 @@ export class SearchComponent implements OnInit {
           movie.title = movie.name;
         return movie;
       });
-      console.log(movies)
       this.results = new Observable<any>(obs => obs.next(movies))
     });
     return this.results;
