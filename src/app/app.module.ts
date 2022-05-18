@@ -30,6 +30,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import {environment} from "../environments/environment.prod";
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    NgChartsModule
   ],
   providers: [
     {
