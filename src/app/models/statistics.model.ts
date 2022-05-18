@@ -4,3 +4,10 @@ export interface StatisticsByActor {
   voteAverage: number;
   popularity: number;
 }
+
+export interface StatisticsByMovie {
+  movieId: string;
+  movieName: string;
+  movieUserRatingAvg: number;
+}
+

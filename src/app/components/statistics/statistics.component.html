@@ -1,6 +1,15 @@
+<div class="charts">
+
 <canvas baseChart
-        [data]="salesData"
+        [data]="popularActorsData"
         [type]="'bar'"
-        [options]="chartOptions">
+        [options]="popularActorsChartOptions">
 </canvas>
 
+<canvas baseChart
+        [data]="popularMoviesData"
+        [type]="'bar'"
+        [options]="popularMoviesChartOptions">
+</canvas>
+
+</div>

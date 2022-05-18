@@ -34,8 +34,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/canvasjs/dist/canvasjs.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -108,7 +107,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "/node_modules/canvasjs/dist/canvasjs.min.js"
             ]
           }
         },

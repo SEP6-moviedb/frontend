@@ -3,11 +3,8 @@ import { StatisticsByActor } from '../../models/statistics.model';
 import { ApiHttpService } from 'src/app/services/api-http.service'
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from "rxjs";
-import { ActivatedRoute } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
-//import * as CanvasJS from './canvasjs.min';
 
-declare const CanvasJS: any;
 declare const ChartData: any;
 declare const ChartOptions: any;
 
@@ -21,10 +18,10 @@ declare const ChartOptions: any;
 export class StatisticsComponent implements OnInit {
 
   private routeSub!: Subscription;
-  statisticsByActor: StatisticsByActor[]= []
-  salesData?: ChartData<'bar'> 
+  popularActorsData?: ChartData<'bar'> 
+  popularMoviesData?: ChartData<'bar'> 
 
-  chartOptions: ChartOptions = {
+  popularActorsChartOptions: ChartOptions = {
     responsive: true,
     plugins: {
       title: {
@@ -34,16 +31,27 @@ export class StatisticsComponent implements OnInit {
     }
   };
 
+  popularMoviesChartOptions: ChartOptions = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Popular Movies',
+      },
+    }
+  };
+
+
   constructor(private apiHttpService: ApiHttpService,
-    private authService: AuthenticationService,
-    private route: ActivatedRoute) { }
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.setStatistics();
+    this.setActorStatistics();
+    this.setMovieStatistics();
   }
 
-  setStatistics() {
-    this.apiHttpService.getStatistics().subscribe(x => {
+  setActorStatistics() {
+    this.apiHttpService.getActorStatistics().subscribe(x => {
       let actorLabels: string[] = [];
       let actorVoteAvg: number[] = [];
       let actorPopularity: number[] = [];
@@ -56,15 +64,36 @@ export class StatisticsComponent implements OnInit {
         actorPopularity.push(x[i].popularity/10);
       }
 
-      this.salesData = {
+      this.popularActorsData = {
         labels: actorLabels,
         datasets: [
           { label: 'Average vote from tmdb', data: actorVoteAvg },
           { label: 'Average popularity from tmdb (divided by ten)', data: actorPopularity }
         ],
       };
+    })
+  }
 
-      this.statisticsByActor = x;
+  setMovieStatistics() {
+    this.apiHttpService.getMovieStatistics().subscribe(x => {
+      let movieLabels: string[] = [];
+      let movieUserRatingAvg: number[] = [];
+
+      x = x.sort((a, b) => (a.movieUserRatingAvg < b.movieUserRatingAvg) ? 1 : -1)
+
+      for (var i = 0; i < x.length; i++) {
+        if (x[i].movieId != null ) { 
+        movieLabels.push(x[i].movieName);
+        movieUserRatingAvg.push(x[i].movieUserRatingAvg);
+      }
+      }
+
+      this.popularMoviesData = {
+        labels: movieLabels,
+        datasets: [
+          { label: 'Average rating from the MovieStar community members', data: movieUserRatingAvg }  
+        ],
+      };
     })
   }
 }
