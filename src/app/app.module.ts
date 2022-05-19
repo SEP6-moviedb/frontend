@@ -29,6 +29,9 @@ import {
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import {environment} from "../environments/environment.prod";
+import { ActorsComponent } from './components/actors/actors.component';
+import { TableComponent } from './components/table/table.component';
+import {AgGridModule} from "ag-grid-angular";
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { NgChartsModule } from 'ng2-charts';
 
@@ -43,7 +46,9 @@ import { NgChartsModule } from 'ng2-charts';
     SearchComponent,
     LoginComponent,
     HomeComponent,
-    StatisticsComponent
+    ActorsComponent,
+    StatisticsComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
@@ -58,6 +63,7 @@ import { NgChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    AgGridModule,
     SocialLoginModule,
     NgChartsModule
   ],

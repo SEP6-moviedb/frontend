@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let actor of actors" style="padding: 5px">
+      <div class="card">
+        <div class="card-header" >
+          <h4 class="align-middle text-center" style="height: 20px">{{actor.name}}</h4>
+        </div>
+        <div  *ngFor="let known of actor.known_for">
+          <a href="#/specific-movie/{{known.id}}">
+          <div class="card-body" *ngIf="known.name || known.title ">
+            <h5 class="align-middle text-center" style="height: 10px">{{known.name}}{{known.title}}</h5>
+          </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
