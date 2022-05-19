@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
 @Injectable({
@@ -12,15 +12,20 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<any> {
     let apiUrl = baseUrl + `users?username=${username}&password=${password}`;
-    let obs = this.http.get<any>(apiUrl);
+    let obs = this.http.get<any>(apiUrl, {observe: "response"});
     obs.subscribe(res => {
-      if (res === 200) {
+      if (res.status === 200) {
         localStorage.setItem("token", "my-super-secret-token-from-server");
-        localStorage.setItem("username", username);
+        localStorage.setItem("username", res.body.toString());
       }
       return res;
     });
     return obs;
+  }
+
+  signup(displayname: string, username: string, password: string): Observable<any> {
+    let apiUrl = baseUrl + `users?username=${username}&password=${password}&displayname=${displayname}`;
+    return this.http.post<any>(apiUrl, {observe: "response"});
   }
 
   logout(): void {

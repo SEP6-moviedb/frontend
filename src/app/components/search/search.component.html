@@ -1,19 +1,21 @@
-<div class="text-center">
-  <h1>Movie Search</h1>
-</div>
+<div class="flex-column d-flex align-items-center justify-content-center">
+  <div class="text-center">
+    <h3>Search for a movie</h3>
+  </div>
 
-<div class="row">
-  <input (input)="searchMovie($event)" type="search" class="form-control" placeholder="search">
-</div>
-<div class="row wrapper">
-  <div class="no-res" *ngIf="results?.length === 0">Nothing matches this search.</div>
-  <div class="col-md-3" *ngFor="let movie of results">
-    <div class="movie-item" *ngIf="movie.poster_path !== 'https://image.tmdb.org/t/p/w400null'">
-      <div class="pb-1">
+  <div class="row w-50 center">
+    <input (input)="searchMovie($event)" type="search" class="form-control" placeholder="Movie Name">
+  </div>
+  <div class="row wrapper m-1">
+    <div class="no-res" *ngIf="results?.length === 0 && loading">Nothing matches this search.</div>
+    <div class="col-md-3" *ngFor="let movie of results">
+      <div class="movie-item" *ngIf="movie.poster_path !== 'https://image.tmdb.org/t/p/w400null'">
+        <div class="pb-1">
+        </div>
+        <a href="#/specific-movie/{{movie.id}}"><img class="rounded" src="{{movie.poster_path}}" alt="{{movie.title}}">
+          <h4 class="align-middle text-center">{{movie.title}} ({{movie.release_date | slice:0:4}})</h4></a>
+        <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
       </div>
-      <a href="#/specific-movie/{{movie.id}}"><img class="rounded" src="{{movie.poster_path}}" alt="{{movie.title}}">
-        <h4 class="align-middle text-center">{{movie.title}} ({{movie.release_date | slice:0:4}})</h4></a>
-      <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
     </div>
   </div>
 </div>

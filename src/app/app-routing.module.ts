@@ -7,6 +7,7 @@ import {SpecificMovieComponent} from "./components/specific-movie/specific-movie
 import {HomeComponent} from "./components/home/home.component";
 import {ActorsComponent} from "./components/actors/actors.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
+import {SignupComponent} from "./components/signup/signup.component";
 
 const routes: Routes = [
   {path: 'movies', component: MoviesComponent, canActivate: [AuthenticationGuard]},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'specific-movie/:tmdbId', component: SpecificMovieComponent, canActivate: [AuthenticationGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'statistics', component: StatisticsComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({

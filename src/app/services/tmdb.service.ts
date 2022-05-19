@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import {KnownFor, popularActor, tmdbMovie} from '../models/movie-star.model';
+import {popularActor, tmdbMovie} from '../models/movie-star.model';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/X-www-form-urlencoded');
 
