@@ -1,8 +1,11 @@
-﻿<main class="form-signin">
-  <button class="btn btn-social-icon btn-google mx-1" (click)="loginWithGoogle()"><span class="fab fa-google">Login with google</span></button>
+﻿<div class="signup flex-column d-flex align-items-center justify-content-center h-100 mt-5">
+  <h2>Sign in</h2>
+  <p class="text-center">To use this awesome movie service you need to sign in.
+    <br> So go ahead and enter your details, we will be ready to sign you in as soon as you press sign in.
+  </p>
+<main class="form-floating w-50">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <h1 class="h3 mb-3 fw-normal">Sign In</h1>
-    <div class="form-floating">
+    <div class="form-floating my-2">
       <input type="email" class="form-control" id="floatingInput" [formControlName]="'username'">
       <label for="floatingInput">Username</label>
       <div class="text-danger" *ngIf="loginForm.invalid && usernameControl?.touched && usernameControl.errors">
@@ -10,13 +13,20 @@
         <span *ngIf="usernameControl.errors['pattern']">Username must be an email</span>
       </div>
     </div>
-    <div class="form-floating">
+    <div class="form-floating my-2">
       <input type="password" class="form-control" id="floatingPassword"  [formControlName]="'password'">
       <label for="floatingPassword">Password</label>
       <div class="text-danger" *ngIf="loginForm.invalid && passwordControl?.touched && passwordControl.errors">
         <span *ngIf="passwordControl.errors['minlength']">Password must have at least 8 characters</span>
       </div>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="this.loginForm.invalid">Sign in</button>
+    <button class="w-100 btn btn-lg btn-primary" [disabled]="this.loginForm.invalid">Sign in</button>
   </form>
 </main>
+</div>
+
+
+<!--
+  SOCIAL LOGIN, NOT WORKING AT THE MOMENT, WAITING FOR DEVS TO FIX PACKAGE
+  <button class="btn btn-social-icon btn-google mx-1" (click)="loginWithGoogle()"><span class="fab fa-google">Login with google</span></button>
+  -->

@@ -35,6 +35,7 @@ import {AgGridModule} from "ag-grid-angular";
 import { SpecificActorComponent } from './components/specific-actor/specific-actor.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgChartsModule } from 'ng2-charts';
     StatisticsComponent,
     TableComponent,
     SpecificActorComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([

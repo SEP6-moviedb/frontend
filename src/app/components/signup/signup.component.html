@@ -1,0 +1,34 @@
+<div class="signup flex-column d-flex align-items-center justify-content-center h-100 mt-5">
+  <h2>Sign up</h2>
+  <p class="text-center">This awesome movie service requires you to sign up. <br> So go ahead and give us your personal details, we will do our
+  best to keep them safe.</p>
+  <main class="form-floating w-50">
+   <form [formGroup]="signupForm" (ngSubmit)="signup()">
+      <div class="form-floating my-2">
+        <input type="string" class="form-control" id="floatingInputDisplayName" [formControlName]="'displayname'">
+        <label for="floatingInputDisplayName">Display Name</label>
+        <div class="text-danger" *ngIf="signupForm.invalid && displaynameControl?.touched && displaynameControl.errors">
+          <span *ngIf="displaynameControl.errors['required']">Display Name is required</span>
+          <span *ngIf="displaynameControl.errors['minlength']">Display Name must have at least 4</span>
+        </div>
+      </div>
+      <div class="form-floating my-2">
+        <input type="email" class="form-control" id="floatingInput" [formControlName]="'username'">
+        <label for="floatingInput">Username</label>
+        <div class="text-danger" *ngIf="signupForm.invalid && usernameControl?.touched && usernameControl.errors">
+          <span *ngIf="usernameControl.errors['required']">Username is required</span>
+          <span *ngIf="usernameControl.errors['pattern']">Username must be an email</span>
+        </div>
+      </div>
+      <div class="form-floating my-2">
+        <input type="password" class="form-control" id="floatingPassword" [formControlName]="'password'">
+        <label for="floatingPassword">Password</label>
+        <div class="text-danger" *ngIf="signupForm.invalid && passwordControl?.touched && passwordControl.errors">
+          <span *ngIf="passwordControl.errors['minlength']">Password must have at least 8 characters</span>
+        </div>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="this.signupForm.invalid">Sign in</button>
+    </form>
+  </main>
+
+</div>

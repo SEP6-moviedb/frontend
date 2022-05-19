@@ -14,7 +14,7 @@ export class ApiHttpService {
 
   rateMovie(rating: any) {
     let apiUrl = baseUrl + `userratings?movieid=${rating.movieId}&rating=${rating.rating}&userid=${rating.userId}`;
-    this.http.post(apiUrl, "").subscribe(res => res);
+    return this.http.post(apiUrl, "");
   }
 
   getCommunityAverage(movieId: any): Observable<any> {
@@ -34,7 +34,7 @@ export class ApiHttpService {
 
   postComment(movieId: any, userName: any, comment: string) {
     let apiUrl = baseUrl + `usercomments?movieid=${movieId}&comment=${comment}&username=${userName}`;
-    this.http.post(apiUrl, "").subscribe(res => res);
+    return this.http.post(apiUrl, "");
   }
 
   get(id: any): Observable<Movie> {

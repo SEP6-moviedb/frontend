@@ -15,7 +15,7 @@ import {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  socialUser!: SocialUser;
+  //socialUser!: SocialUser;
   private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   loginForm = new FormGroup({
@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    /*
     this.socialAuthService.authState.subscribe(user => {
       this.socialUser = user;
       console.log(this.socialUser);
     });
-    console.log(this.socialAuthService)
+    console.log(this.socialAuthService)*/
   }
 
   get usernameControl(): FormControl {
@@ -52,14 +53,16 @@ export class LoginComponent implements OnInit {
     let username = this.f['username'].value
     let password = this.f['password'].value
     this.authenticationService.login(username, password).subscribe(r => {
-      if (r === 200)
-        this.router.navigateByUrl("/");
+      if (r.status === 200)
+        this.router.navigateByUrl("/").then(() => window.location.reload());
       else
         this.router.navigateByUrl("/login")
     });
   }
 
+  /*
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
+  */
 }

@@ -43,7 +43,9 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
     if (event === 0)
       return;
     let rate = {movieId: this.movie.id, rating: event, userId: this.authService.getCurrentUser()}
-    this.apiHttpService.rateMovie(rate);
+    this.apiHttpService.rateMovie(rate).subscribe(() => {
+      window.location.reload();
+    });
   }
 
   setAverageRating(id: string){
@@ -74,14 +76,18 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
 
   getCredits(id: string){
     this.tmdbService.getMovieCredits(id).subscribe(credits => {
+      if (credits === undefined)
+        return;
       this.util.sanitizeCredits(credits as Credits);
       this.credits = credits;
-      console.log(this.credits)
     })
   }
 
   comment(){
     this.apiHttpService.postComment(this.movie.id, this.authService.getCurrentUser(), this.commentForm.value.comment)
+      .subscribe(() => {
+        window.location.reload();
+    })
   }
 
   toggle() {
