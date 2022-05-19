@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
+import {MovieUtilService} from "../../services/movie-util-service.service";
 
 @Component({
   selector: 'app-specific-movie',
@@ -27,7 +28,8 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
               private apiHttpService: ApiHttpService,
               private authService: AuthenticationService,
               private formBuilder: FormBuilder,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private util: MovieUtilService) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -54,11 +56,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
     this.tmdbService.getMovieByTmdbId(id).then(movie => {
       if (movie === undefined)
         return;
-      movie.backdrop_path = 'https://image.tmdb.org/t/p/w400' + movie.backdrop_path;
-      movie.poster_path = 'https://image.tmdb.org/t/p/w400' + movie.poster_path;
-      if (movie.title == undefined)
-        movie.title = movie.name;
-      this.movie = movie;
+      this.movie = this.util.sanitizeMovies([movie])[0];
       this.movie.stars = movie.vote_average / 2;
     })
   }

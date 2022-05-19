@@ -13,7 +13,6 @@ export class ApiHttpService {
   constructor(private http: HttpClient) { }
 
   rateMovie(rating: any) {
-    console.log(rating)
     let apiUrl = baseUrl + `userratings?movieid=${rating.movieId}&rating=${rating.rating}&userid=${rating.userId}`;
     this.http.post(apiUrl, "").subscribe(res => res);
   }
