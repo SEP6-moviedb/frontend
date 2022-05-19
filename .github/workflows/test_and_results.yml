@@ -33,20 +33,3 @@ jobs:
       with:
         name: test_coverage
         path: coverage
-  deploy:
-    runs-on: ubuntu-18.04
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Download build
-        uses: actions/download-artifact@v3
-        with:
-          name: test_coverage
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          branch: main
-          folder: sep6-web-app
-          repository-name: SEP6-moviedb/frontend-test-results
