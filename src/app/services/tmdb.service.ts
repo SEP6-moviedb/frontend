@@ -21,6 +21,11 @@ export class TmdbService {
     return this.http.get<any>(searchUrl);
   }
 
+  getMovieCredits(tmdbId: string): Observable<any>{
+    let searchUrl = baseUrl + `movie/${tmdbId}/credits?api_key=${apiKey}&language-en-US`;
+    return this.http.get<any>(searchUrl);
+  }
+
   getGenreList(type: string): Observable<any> {
     const requestUrl = baseUrl + `genre/${type}/list?api_key=${apiKey}&language=en-US`;
     return this.http.get(requestUrl);

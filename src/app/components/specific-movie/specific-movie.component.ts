@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb.service'
 import { ApiHttpService } from 'src/app/services/api-http.service'
-import {comment, tmdbMovie} from '../../models/movie-star.model';
+import {comment, Credits, tmdbMovie} from '../../models/movie-star.model';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
@@ -14,7 +14,7 @@ import {MovieUtilService} from "../../services/movie-util-service.service";
   styleUrls: ['./specific-movie.component.css']
 })
 export class SpecificMovieComponent implements OnInit, OnDestroy {
-
+  credits!: Credits;
   movie: tmdbMovie = new tmdbMovie();
   comments: comment[] = [];
   ratingCtrl = new FormControl(null, Validators.required);
@@ -36,6 +36,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
       this.getMovieById(params['tmdbId']);
       this.setAverageRating(params['tmdbId']);
       this.getComments(params['tmdbId']);
+      this.getCredits(params['tmdbId']);
     });
   }
   rateChanged(event: number){
@@ -67,6 +68,14 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
         if (c.comment !== null)
           this.comments.push(c);
       })
+    })
+  }
+
+  getCredits(id: string){
+    this.tmdbService.getMovieCredits(id).subscribe(credits => {
+      this.util.sanitizeCredits(credits as Credits);
+      this.credits = credits;
+      console.log(this.credits)
     })
   }
 
