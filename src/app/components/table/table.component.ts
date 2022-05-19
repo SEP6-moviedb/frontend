@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbService} from "../../services/tmdb.service";
-import {popularActor} from "../../models/movie-star.model";
-import {HttpClient} from "@angular/common/http";
+import {KnownFor, popularActor} from "../../models/movie-star.model";
 
 
 @Component({
@@ -14,7 +13,7 @@ export class TableComponent implements OnInit {
   actors: popularActor[] = [];
 
 
-  constructor(private tmdbService: TmdbService, private http: HttpClient) {
+  constructor(private tmdbService: TmdbService) {
     this.responsiveOptions = [{
       breakpoint: '4096px',
       numVisible: 3,
@@ -35,9 +34,11 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPopularActors();
+
   }
 
-  getPopularActors() {
-    this.tmdbService.getPopularActors()
+  async getPopularActors() {
+    this.actors = await this.tmdbService.getPopularActors()
   }
 }
+

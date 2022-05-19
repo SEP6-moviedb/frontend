@@ -70,20 +70,13 @@ export interface KnownFor {
     original_name: string;
   }
 
-  export interface Result {
+  export interface popularActor {
     profile_path: string;
     adult: boolean;
     id: number;
     known_for: KnownFor[];
     name: string;
     popularity: number;
-  }
-
-  export interface popularActor {
-    page: number;
-    results: Result[];
-    total_results: number;
-    total_pages: number;
   }
 
 
