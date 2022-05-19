@@ -33,6 +33,8 @@ import { ActorsComponent } from './components/actors/actors.component';
 import { TableComponent } from './components/table/table.component';
 import {AgGridModule} from "ag-grid-angular";
 import { SpecificActorComponent } from './components/specific-actor/specific-actor.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { SpecificActorComponent } from './components/specific-actor/specific-act
     LoginComponent,
     HomeComponent,
     ActorsComponent,
+    StatisticsComponent,
     TableComponent,
     SpecificActorComponent,
   ],
@@ -63,7 +66,8 @@ import { SpecificActorComponent } from './components/specific-actor/specific-act
     ReactiveFormsModule,
     FormsModule,
     AgGridModule,
-    SocialLoginModule
+    SocialLoginModule,
+    NgChartsModule
   ],
   providers: [
     {
