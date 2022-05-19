@@ -29,6 +29,9 @@ import {
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import {environment} from "../environments/environment.prod";
+import { ActorsComponent } from './components/actors/actors.component';
+import { TableComponent } from './components/table/table.component';
+import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import {environment} from "../environments/environment.prod";
     SpecificMovieComponent,
     SearchComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ActorsComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
@@ -55,6 +60,7 @@ import {environment} from "../environments/environment.prod";
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    AgGridModule,
     SocialLoginModule
   ],
   providers: [
