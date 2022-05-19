@@ -1,6 +1,5 @@
 export class Movie {
   date?: any;
-  temperatureC?: any;
   summary?: any;
 }
 
@@ -65,20 +64,7 @@ export interface Credits {
   cast: Cast[];
   crew: Crew[];
 }
-  export interface actors {
-    birthday: string;
-    known_for_department: string;
-    deathday?: any;
-    id: number;
-    name: string;
-    also_known_as: string[];
-    gender: number;
-    biography: string;
-    popularity: number;
-    place_of_birth: string;
-    profile_path: string;
-    adult: boolean;
-    imdb_id: string;
+
   export class actors {
     birthday?: string;
     known_for_department!: string;

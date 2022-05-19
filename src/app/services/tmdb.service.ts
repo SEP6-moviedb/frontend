@@ -66,7 +66,7 @@ export class TmdbService {
   }
 
   getPopularActors() {
-    let apiUrl = baseUrl + `person/popular?api_key=${apiKey}&language=en-US&page=1`;
+    let apiUrl = baseUrl + `person/popular?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <popularActor[]>res.results)
@@ -76,7 +76,7 @@ export class TmdbService {
   }
 
   getActorById(personId: number){
-    let apiUrl = baseUrl + `person/${personId}?api_key=${apiKey}&language=en-US`
+    let apiUrl = baseUrl + `person/${personId}?api_key=${apiKey}&language=en-US&include_adult=false`
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <actors>res)

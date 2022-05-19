@@ -23,3 +23,7 @@
   overflow: hidden;
   color: darkred;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
