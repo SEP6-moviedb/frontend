@@ -57,22 +57,22 @@ export class ApiHttpService {
   }
 
   getActorStatistics(): Observable<StatisticsByActor[]> {
-    //let apiUrl = `${baseUrl}/actorstatistics`;
-    let apiUrl = "https://localhost:7183/" + `actorstatistics`;
+    let apiUrl = `${baseUrl}/actorstatistics`;
+    //let apiUrl = "https://localhost:7183/" + `actorstatistics`;
     let obs = this.http.get<StatisticsByActor[]>(apiUrl);
     obs.subscribe(res => {
-      console.log(res);
+      //console.log(res);
       return res
     });
     return obs;
   }
 
   getMovieStatistics(): Observable<StatisticsByMovie[]> {
-    //let apiUrl = `${baseUrl}/moviestatistics`;
-    let apiUrl = "https://localhost:7183/" + `moviestatistics`;
+    let apiUrl = `${baseUrl}/moviestatistics`;
+    //let apiUrl = "https://localhost:7183/" + `moviestatistics`;
     let obs = this.http.get<StatisticsByMovie[]>(apiUrl);
     obs.subscribe(res => {
-      console.log(res);
+      //console.log(res);
       return res
     });
     return obs;
