@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { Observable } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  tap,
-  switchMap
-} from 'rxjs/operators';
 import { TmdbService } from 'src/app/services/tmdb.service'
+import {MovieUtilService} from "../../services/movie-util-service.service";
+import {tmdbMovie} from "../../models/movie-star.model";
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-search',
@@ -16,38 +11,27 @@ import { TmdbService } from 'src/app/services/tmdb.service'
 })
 export class SearchComponent implements OnInit {
   public loading: boolean = false;
-  public results!: Observable<any>;
-  public searchField!: FormControl;
+  public results: Array<any> = []
 
-  constructor(private tmdbService: TmdbService) { }
 
-  ngOnInit(): void {
-    this.searchField = new FormControl();
-    this.results = this.searchField.valueChanges.pipe(
-      debounceTime(4000),
-      distinctUntilChanged(),
-      tap(_ => {
-        this.loading = true;
-      }),
-
-      switchMap(term => this.search(term)),
-
-      tap(_ => (this.loading = false))
-    );
+  constructor(private tmdbService: TmdbService, private util: MovieUtilService) {
+    this.searchMovie = _.debounce(this.searchMovie, 1000);
   }
 
-  search(search: string): Observable<any>{
+  ngOnInit(): void {  }
 
-    this.tmdbService.search(search).then(movies =>{
-      movies.forEach(movie => {
-        movie.backdrop_path = 'https://image.tmdb.org/t/p/w400' + movie.backdrop_path;
-        movie.poster_path = 'https://image.tmdb.org/t/p/w400' + movie.poster_path;
-        if (movie.title == undefined)
-          movie.title = movie.name;
-        return movie;
-      });
-      this.results = new Observable<any>(obs => obs.next(movies))
-    });
-    return this.results;
+  searchMovie(e: any){
+    if (e.target.value.length > 2){
+      this.loading = true;
+      this.tmdbService.searchMovie(e.target.value).subscribe(res => {
+          let movies: tmdbMovie[] = res.results;
+          this.results = this.util.sanitizeMovies(movies);
+        })
+    }
+    if (e.target.value.length == 0) {
+      this.results = [];
+      this.loading = false;
+    }
   }
+
 }

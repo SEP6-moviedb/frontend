@@ -12,7 +12,7 @@ class TmdbServiceMock{
   getTrendingMovies() {
     let movies: tmdbMovie[] = []
     let movie = new tmdbMovie()
-    movie.title = "Bob The Builder"
+    movie.name = "Bob The Builder"
     movie.backdrop_path = "/bob-movies.com"
     movie.poster_path = "/bob-poster.com"
     movies[0] = movie;
@@ -27,7 +27,7 @@ class TmdbServiceMock{
 
   getRecommendationByGenre(genre: string){
     let movie = new tmdbMovie()
-    movie.title = "Super cool action movie"
+    movie.name = "Super cool action movie"
     movie.backdrop_path = "/action-movies.com"
     movie.poster_path = "/action-poster.com"
     this.data = [movie];
