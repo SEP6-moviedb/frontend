@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>Name</h5>
+    </div>
+    <div class="col-sm">
+      <h6>{{actor.name}}</h6>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="actor.birthday != null">
+    <div class="col">
+      <h5>Birth date</h5>
+    </div>
+    <div class="col-sm" >
+      <h6>{{actor.birthday}}</h6>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="actor.place_of_birth != null">
+    <div class="col">
+      <h5>Birth place</h5>
+    </div>
+    <div class="col-sm">
+      <h6>{{actor.place_of_birth}}</h6>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="actor.biography != null">
+    <div class="col">
+      <h5>Biography</h5>
+    </div>
+    <div class="col-sm">
+      <h6>{{actor.biography}}</h6>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="actor.known_for_department != null">
+    <div class="col">
+      <h5>Also known for</h5>
+    </div>
+    <div class="col-sm">
+      <h6>{{actor.known_for_department}}</h6>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="actor.deathday != null">
+    <div class="col">
+      <h5>Date of death</h5>
+    </div>
+    <div class="col-sm">
+      <h6>{{actor.deathday}}</h6>
+    </div>
+  </div>
+
+</div>

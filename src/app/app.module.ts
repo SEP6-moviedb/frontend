@@ -32,6 +32,7 @@ import {environment} from "../environments/environment.prod";
 import { ActorsComponent } from './components/actors/actors.component';
 import { TableComponent } from './components/table/table.component';
 import {AgGridModule} from "ag-grid-angular";
+import { SpecificActorComponent } from './components/specific-actor/specific-actor.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {AgGridModule} from "ag-grid-angular";
     HomeComponent,
     ActorsComponent,
     TableComponent,
+    SpecificActorComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([

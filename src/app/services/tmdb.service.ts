@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import {KnownFor, popularActor, tmdbMovie} from '../models/movie-star.model';
+import {actors, KnownFor, popularActor, tmdbMovie} from '../models/movie-star.model';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -70,4 +70,13 @@ export class TmdbService {
       });
   }
 
+  getActorById(personId: number){
+    let apiUrl = baseUrl + `person/${personId}?api_key=${apiKey}&language=en-US`
+    return this.http.get<any>(apiUrl)
+      .toPromise()
+      .then(res => <actors>res)
+      .then(data => {
+        return data;
+      });
+  }
 }
