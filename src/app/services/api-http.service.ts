@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {comment, Movie} from '../models/movie-star.model';
+import { StatisticsByActor, StatisticsByMovie } from '../models/statistics.model';
 
 const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiHttpService {
+
   constructor(private http: HttpClient) { }
 
   rateMovie(rating: any) {
@@ -53,4 +55,27 @@ export class ApiHttpService {
   findByTitle(title: any): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${baseUrl}?title=${title}`);
   }
+
+  getActorStatistics(): Observable<StatisticsByActor[]> {
+    let apiUrl = `${baseUrl}/actorstatistics`;
+    //let apiUrl = "https://localhost:7183/" + `actorstatistics`;
+    let obs = this.http.get<StatisticsByActor[]>(apiUrl);
+    obs.subscribe(res => {
+      //console.log(res);
+      return res
+    });
+    return obs;
+  }
+
+  getMovieStatistics(): Observable<StatisticsByMovie[]> {
+    let apiUrl = `${baseUrl}/moviestatistics`;
+    //let apiUrl = "https://localhost:7183/" + `moviestatistics`;
+    let obs = this.http.get<StatisticsByMovie[]>(apiUrl);
+    obs.subscribe(res => {
+      //console.log(res);
+      return res
+    });
+    return obs;
+  }
+
 }
