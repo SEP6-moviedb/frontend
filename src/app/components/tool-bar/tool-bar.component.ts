@@ -24,7 +24,6 @@ export class ToolBarComponent implements OnInit {
     this.apiHttpService.getAll().subscribe({
       next: (data) => {
         this.movies = data;
-        console.log(data);
       },
       error: (e) => console.error(e)
     });

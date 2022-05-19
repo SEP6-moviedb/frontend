@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 
 export class AppComponent {
-  title = 'SEP6WebApp';
+  title = 'MovieStar';
 
   constructor(
     private authService: AuthenticationService,

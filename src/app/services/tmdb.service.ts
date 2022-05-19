@@ -16,23 +16,9 @@ export class TmdbService {
 
   constructor(private http: HttpClient) { }
 
-  search2(term: string): Observable<any>{
+  searchMovie(term: string): Observable<any>{
     let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
-    let obs = this.http.get<any>(searchUrl);
-    obs.toPromise()
-      .then(res => res);
-    //<tmdbMovie[]>res.results
-      //.then(data => {
-      //  return data; });
-    return obs;
-  }
-  search(term: string){
-    let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
-    return this.http.get<any>(searchUrl)
-      .toPromise()
-      .then(res => <tmdbMovie[]>res.results)
-      .then(data => {
-        return data; });
+    return this.http.get<any>(searchUrl);
   }
 
   getGenreList(type: string): Observable<any> {
@@ -50,7 +36,8 @@ export class TmdbService {
     return this.http.get<any>(apiUrl)
       .toPromise()
       .then(res => <tmdbMovie[]>res.results)
-      .then(data => { return data; });
+      .then(data => {
+        return data; });
   }
 
   getRecommendationByGenre(genre: string) {
