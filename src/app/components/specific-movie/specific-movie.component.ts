@@ -57,7 +57,6 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
 
   getMovieById(id: string){
     this.tmdbService.getMovieByTmdbId(id).then(movie => {
-      console.log(movie + "qqqqqqqqqq");
       if (movie === undefined)
         return;
       this.movie = this.util.sanitizeMovies([movie])[0];

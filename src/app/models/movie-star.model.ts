@@ -104,7 +104,7 @@ export interface KnownFor {
     original_name: string;
   }
 
-  export interface popularActor {
+  export interface searchActor {
     profile_path: string;
     adult: boolean;
     id: number;

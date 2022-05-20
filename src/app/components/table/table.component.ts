@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbService} from "../../services/tmdb.service";
-import {KnownFor, popularActor} from "../../models/movie-star.model";
+import { searchActor} from "../../models/movie-star.model";
 
 
 @Component({
@@ -10,7 +10,7 @@ import {KnownFor, popularActor} from "../../models/movie-star.model";
 })
 export class TableComponent implements OnInit {
   responsiveOptions: any;
-  actors: popularActor[] = [];
+  actors: searchActor[] = [];
 
 
   constructor(private tmdbService: TmdbService) {

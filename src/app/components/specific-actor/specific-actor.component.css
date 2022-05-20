@@ -5,6 +5,33 @@
   padding: 20px;
   background: #F1FFE1;
 }
-.col{
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
+.card {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 25px;
+  border: 2px solid;
+  padding: 20px;
+  background: #F1FFE1;
+}
+
+.row-cols-md-6 {
+  margin-top: 20px;
+  border-radius: 25px;
+  border: 2px solid;
+  padding: 20px;
+  background: lightblue;
+}
+
+.container {
+  width: 100%;
+  margin-top: 100px;
+  border-radius: 25px;
+  border: 2px solid;
+  padding: 20px;
+  margin-bottom: 100px;
 }

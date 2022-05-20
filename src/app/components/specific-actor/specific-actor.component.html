@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="row-1">
     <div class="col">
-      <h5>Name</h5>
-    </div>
-    <div class="col-sm">
-      <h6>{{actor.name}}</h6>
+      <h1 class="align-middle text-center">{{actor.name}}</h1>
     </div>
   </div>
 
@@ -37,7 +34,7 @@
 
   <div class="row" *ngIf="actor.known_for_department != null">
     <div class="col">
-      <h5>Also known for</h5>
+      <h5>Professions</h5>
     </div>
     <div class="col-sm">
       <h6>{{actor.known_for_department}}</h6>
@@ -53,4 +50,28 @@
     </div>
   </div>
 
-</div>
+
+    <div class="row">
+      <div class="column">
+        <h4 class="align-middle text-center" style="height: 20px">
+          Also known for These movies fantastic movies!
+        </h4>
+      </div>
+    </div>
+    <div *ngFor="let actor1 of actors" >
+      <div *ngIf="actor.id == actor1.id">
+        <div  *ngFor="let known of actor1.known_for">
+          <div class="row-cols-md-6" *ngIf="known.name || known.title ">
+            <a href="#/specific-movie/{{known.id}}">
+              <div >
+                <h4 class="align-middle text-center" style="height: 20px">
+                  {{known.name}}{{known.title}}
+                </h4>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
