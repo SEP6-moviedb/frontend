@@ -57,8 +57,8 @@ export class StatisticsComponent implements OnInit {
       this.popularActorsData = {
         labels: actorLabels,
         datasets: [
-          { label: 'Average vote from tmdb', data: actorVoteAvg },
-          { label: 'Average popularity from tmdb (divided by ten)', data: actorPopularity }
+          { label: 'Average tmdb rating for movies the actor is known for', data: actorVoteAvg },
+          { label: 'Average tmdb popularity for the actor (divided by ten)', data: actorPopularity }
         ],
       };
     })
@@ -81,7 +81,7 @@ export class StatisticsComponent implements OnInit {
       this.popularMoviesData = {
         labels: movieLabels,
         datasets: [
-          { label: 'Average rating from the MovieStar community members', data: movieUserRatingAvg }
+          { label: 'Average movie rating from the MovieStar community', data: movieUserRatingAvg }
         ],
       };
     })

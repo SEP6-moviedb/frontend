@@ -42,7 +42,9 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
   }
 
   addToFavourites(){
-    this.apiHttpService.addToFavourites(this.authService.getCurrentEmail()!, this.movie.id + "", this.movie.title)
+    this.apiHttpService.addToFavourites(
+      this.authService.getCurrentEmail()!, this.movie.id + "", this.movie.title)
+      .subscribe(s => s);
   }
 
   rateChanged(event: number){
@@ -93,6 +95,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         window.location.reload();
     })
+
   }
 
   toggle() {

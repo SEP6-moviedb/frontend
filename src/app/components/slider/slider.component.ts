@@ -11,7 +11,7 @@ import {MovieUtilService} from "../../services/movie-util-service.service";
 
 export class SliderComponent implements OnInit {
   responsiveOptions: any;
-  movies: tmdbMovie[] = [];
+  movies: Array<any> = [];
 
   genre!: string;
   @Input() genreId = '';
@@ -42,23 +42,33 @@ export class SliderComponent implements OnInit {
   }
 
   getTrendingMovies() {
-    this.tmdbService.getTrendingMovies().then(movies => {
-      this.movies = this.util.sanitizeMovies(movies);
-      this.genre = "Trending ⏫"
-    });
+    this.tmdbService.getTrendingMovies().subscribe(res => {
+        let movies: tmdbMovie[] = res.results;
+        this.movies = this.util.sanitizeMovies(movies);
+        this.genre = "Trending ⏫"
+      }
+    );
   }
 
   getMovieByGenre(genre: string) {
-    this.tmdbService.getRecommendationByGenre(genre).then(movies => {
+    this.tmdbService.getRecommendationByGenre(genre).subscribe(res => {
+      let movies: tmdbMovie[] = res.results;
       this.movies = this.util.sanitizeMovies(movies);
-      // TODO: Rest of genres according to this list: https://www.themoviedb.org/talk/5daf6eb0ae36680011d7e6ee?language=da-DK
-      // DON'T COVER ALL, NOT NECESSARY
       switch (genre) {
         case "28":
           this.genre = "Action";
           break;
+        case "12":
+          this.genre = "Adventure"
+          break;
         case "16":
           this.genre = "Animation"
+          break;
+        case "35":
+          this.genre = "Comedy"
+          break;
+        case "14":
+          this.genre = "Fantasy"
           break;
         default:
           this.genre = "Unknown"

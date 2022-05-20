@@ -45,22 +45,4 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  searchPeople(e: any) {
-
-  }
-
-  searchMovie(e: any){
-    if (e.target.value.length > 2){
-      this.loading = true;
-      this.tmdbService.searchMovie(e.target.value).subscribe(res => {
-          let movies: tmdbMovie[] = res.results;
-          this.results = this.util.sanitizeMovies(movies);
-        })
-    }
-    if (e.target.value.length == 0) {
-      this.results = [];
-      this.loading = false;
-    }
-  }
-
 }

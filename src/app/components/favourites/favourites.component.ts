@@ -10,7 +10,7 @@ import {AuthenticationService} from "../../services/authentication.service";
   styleUrls: ['./favourites.component.css']
 })
 export class FavouritesComponent implements OnInit {
-  movies: Array<any>[] = [];
+  movies: Array<any> = [];
 
   constructor(private apiHttpService: ApiHttpService,
               private tmdbService: TmdbService,
@@ -23,7 +23,7 @@ export class FavouritesComponent implements OnInit {
 
   getMyFavouriteMovies(){
     this.apiHttpService.getFavourites(this.authService.getCurrentEmail()!).subscribe(res => {
-
+      this.movies = res;
     })
   }
 

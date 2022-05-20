@@ -18,8 +18,8 @@ export class ApiHttpService {
   }
 
   addToFavourites(userId: string, movieId: string, title: string){
-    let apiUrl = baseUrl + `favourites?action=add`;
-    return this.http.post(apiUrl, {email: userId, movieid: movieId, title: title});
+    let apiUrl = baseUrl + `favourites`;
+    return this.http.post(apiUrl, {userid: userId, movieid: movieId, moviename: title});
   }
 
   getFavourites(userId: string): Observable<any> {
