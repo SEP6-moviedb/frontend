@@ -8,9 +8,10 @@ import {HomeComponent} from "./components/home/home.component";
 import {ActorsComponent} from "./components/actors/actors.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
 import {SignupComponent} from "./components/signup/signup.component";
+import {FavouritesComponent} from "./components/favourites/favourites.component";
 
 const routes: Routes = [
-  {path: 'movies', component: MoviesComponent, canActivate: [AuthenticationGuard]},
+  {path: 'movies', component: MoviesComponent},
   {path: 'actors', component: ActorsComponent, canActivate: [AuthenticationGuard]},
   {path: 'home', component: HomeComponent},
   {path: 'specific-movie/:tmdbId', component: SpecificMovieComponent, canActivate: [AuthenticationGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthenticationGuard] },
+  { path: 'favourites', component: FavouritesComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
   ratingCtrl = new FormControl(null, Validators.required);
   private routeSub!: Subscription;
   communityRating: number = 0;
+
   commentForm = this.formBuilder.group({
     comment: ''
   });
@@ -39,10 +40,15 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
       this.getCredits(params['tmdbId']);
     });
   }
+
+  addToFavourites(){
+    this.apiHttpService.addToFavourites(this.authService.getCurrentEmail()!, this.movie.id + "", this.movie.title)
+  }
+
   rateChanged(event: number){
     if (event === 0)
       return;
-    let rate = {movieId: this.movie.id, rating: event, userId: this.authService.getCurrentUser()}
+    let rate = {movieId: this.movie.id, rating: event, userId: this.authService.getCurrentEmail()}
     this.apiHttpService.rateMovie(rate).subscribe(() => {
       window.location.reload();
     });

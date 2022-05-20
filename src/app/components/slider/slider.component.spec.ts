@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
-import {Observable} from "rxjs";
 import {TmdbService} from "../../services/tmdb.service";
 import {tmdbMovie} from "../../models/movie-star.model";
 
@@ -76,7 +75,7 @@ describe('SliderComponent', () => {
     // Assert
     expect(component.movies[0].title).toEqual("Bob The Builder");
     expect(component.movies[1].backdrop_path).toEqual("https://image.tmdb.org/t/p/w400/batman-movies.com");
-    expect(component.genre).toEqual("Trending");
+    expect(component.genre).toEqual("Trending ⏫");
   })
 
   it('should get specific genre movies', async () => {
