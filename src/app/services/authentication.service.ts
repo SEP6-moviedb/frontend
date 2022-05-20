@@ -36,7 +36,7 @@ export class AuthenticationService {
   }
 
   signup(displayname: string, username: string, password: string): Observable<any> {
-    let apiUrl = baseUrl + `users`;
+    let apiUrl = baseUrl + `users?action=signup`;
     return this.http.post<any>(apiUrl,
       {displayname: displayname, username: username, password: password},
       {observe: "response"});
