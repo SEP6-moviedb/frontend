@@ -25,6 +25,11 @@ export class TmdbService {
     return this.http.get<any>(searchUrl);
   }
 
+  people(name: string): Observable<any>{
+    let searchUrl = baseUrl + `search/person?api_key=${apiKey}&language=en-US&query=${name}&page=1&include_adult=false`;
+    return this.http.get<any>(searchUrl);
+  }
+
   getMovieCredits(tmdbId: string): Observable<any>{
     let searchUrl = baseUrl + `movie/${tmdbId}/credits?api_key=${apiKey}&language-en-US`;
     return this.http.get<any>(searchUrl);

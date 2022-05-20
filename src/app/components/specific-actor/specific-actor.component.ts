@@ -3,6 +3,7 @@ import {actors, searchActor} from "../../models/movie-star.model";
 import {TmdbService} from "../../services/tmdb.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
+import {MovieUtilService} from "../../services/movie-util-service.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SpecificActorComponent implements OnInit {
   private routeSub!: Subscription;
   actors: searchActor[] = [];
 
-  constructor(private route: ActivatedRoute, private tmdbService: TmdbService) {
+  constructor(private route: ActivatedRoute, private tmdbService: TmdbService, private util: MovieUtilService) {
     this.responsiveOptions = [{
       breakpoint: '4096px',
       numVisible: 3,
@@ -39,12 +40,15 @@ export class SpecificActorComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       this.getActor(params['Id']);
     });
-    this.getPopularActors();
+
   }
 
-  async getActor(id: number) {
+  async getActor(id: string) {
 
-    this.actor = await this.tmdbService.getActorById(id)
+    this.tmdbService.people(id).subscribe(res => {
+      let people: searchActor[] = res.results;
+      this.actors = this.util.sanitizePeople(people);
+    })
   }
 
   ngOnDestroy() {
