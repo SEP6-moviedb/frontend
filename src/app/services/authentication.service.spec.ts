@@ -86,7 +86,7 @@ describe('AuthenticationService', () => {
     service.logout();
 
     // Assert
-    expect(localStorage.removeItem).toHaveBeenCalledTimes(2)
+    expect(localStorage.removeItem).toHaveBeenCalledTimes(3)
     expect(localStorage.removeItem).toHaveBeenCalledWith("username")
     expect(localStorage.removeItem).toHaveBeenCalledWith("token")
   });

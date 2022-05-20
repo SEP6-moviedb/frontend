@@ -11,15 +11,20 @@
 </ng-template>
 
 <div class="container">
+  <div class="position-absolute top-90 end-0">
+    <button (click)="addToFavourites()" type="button" class="btn btn-lg" title="Add to favourites">➕</button>
+  </div>
+
   <div class="row" style="margin-top:20px;">
     <div class="col-sm-6">
       <img src="{{movie.poster_path}}" class="img-fluid detail">
     </div>
     <div class="col-sm-6 my-auto">
-      <h1>{{movie.title}}</h1>
+      <h1 class="d-inline">{{movie.title}}</h1>
+      <br>
       <ngb-rating [max]="5" [starTemplate]="star"  [(rate)]="movie.stars" [readonly]="true"></ngb-rating>
       <br>
-      <ngb-rating [max]="5" [starTemplate]="heart" [(rate)]="communityRating" (rateChange)="rateChanged($event)" [formControl]="ratingCtrl" [readonly]="false"></ngb-rating>
+      <ngb-rating title="Rate this movie" [max]="5" [starTemplate]="heart" [(rate)]="communityRating" (rateChange)="rateChanged($event)" [formControl]="ratingCtrl" [readonly]="false"></ngb-rating>
       <div class="form-text small">
         <div *ngIf="ratingCtrl.valid" class="text-success">Thank you for your rating</div>
         <div *ngIf="ratingCtrl.invalid" class="text-danger">Please rate the movie</div>
@@ -30,10 +35,22 @@
   </div>
 </div>
 
-
 <div class="container mt-5">
   <div class="row row-cols-2">
     <div class="col" *ngIf="credits">
+      <h4>Director(s)</h4>
+      <div *ngFor="let crew of credits.crew">
+        <div class="card mt-2 mb-2 p-2" *ngIf="crew.job === 'Director'">
+          <div class="row">
+            <div class="col-md-3">
+              <img *ngIf="crew.profile_path !== 'https://image.tmdb.org/t/p/w200null'" class="rounded img-fluid" style="height: 150px" src="{{crew.profile_path}}" alt="{{crew.name}}">
+            </div>
+            <div class="col-md-8">
+              <h5 class="text-center">{{crew.name}} as <strong>{{crew.job}}</strong></h5>
+            </div>
+          </div>
+        </div>
+      </div>
       <h4>Actors</h4>
       <div *ngFor="let actor of credits.cast">
         <a href="#/specific-actor/{{actor.id}}">

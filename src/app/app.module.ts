@@ -36,6 +36,7 @@ import { SpecificActorComponent } from './components/specific-actor/specific-act
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SignupComponent } from './components/signup/signup.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SignupComponent } from './components/signup/signup.component';
     TableComponent,
     SpecificActorComponent,
     SignupComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([

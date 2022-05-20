@@ -25,7 +25,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item" *ngIf="isLoggedIn">
-            <p class="pt-2 pe-3">Hi {{username}} </p>
+            <p class="pt-2 pe-2">Hi👋 {{username}}</p>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" routerLink="/favourites">My favourites</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedIn">
             <a class="nav-link" routerLink="/" (click)="logout()">Logout</a>

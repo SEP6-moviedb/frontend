@@ -13,6 +13,7 @@ export class AuthenticationService {
   handleLoginRequestErrors(obs: Observable<any>): Observable<any>{
     return obs.pipe(catchError(err => {
         if (!!err.status && err.status === 401){
+          localStorage.removeItem("email");
           return NEVER;
         }
         return throwError(err);
@@ -28,13 +29,14 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<any> {
     let apiUrl = baseUrl + `users?action=signin`;
+    localStorage.setItem("email", username);
     return this.handleLoginRequestErrors(this.http.post<any>(apiUrl,
       {username: username, password: password},
       {observe: "response"}));
   }
 
   signup(displayname: string, username: string, password: string): Observable<any> {
-    let apiUrl = baseUrl + `users`;
+    let apiUrl = baseUrl + `users?action=signup`;
     return this.http.post<any>(apiUrl,
       {displayname: displayname, username: username, password: password},
       {observe: "response"});
@@ -43,6 +45,7 @@ export class AuthenticationService {
   logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("email");
   }
 
   isUserLoggedIn(): boolean {
@@ -51,5 +54,9 @@ export class AuthenticationService {
 
   getCurrentUser(): string | null{
     return localStorage.getItem("username");
+  }
+
+  getCurrentEmail(): string | null{
+    return localStorage.getItem("email");
   }
 }

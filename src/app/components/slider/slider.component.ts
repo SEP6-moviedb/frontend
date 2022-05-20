@@ -44,7 +44,7 @@ export class SliderComponent implements OnInit {
   getTrendingMovies() {
     this.tmdbService.getTrendingMovies().then(movies => {
       this.movies = this.util.sanitizeMovies(movies);
-      this.genre = "Trending"
+      this.genre = "Trending ⏫"
     });
   }
 

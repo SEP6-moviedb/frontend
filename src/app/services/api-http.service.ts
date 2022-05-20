@@ -17,6 +17,16 @@ export class ApiHttpService {
     return this.http.post(apiUrl, "");
   }
 
+  addToFavourites(userId: string, movieId: string, title: string){
+    let apiUrl = baseUrl + `favourites?action=add`;
+    return this.http.post(apiUrl, {email: userId, movieid: movieId, title: title});
+  }
+
+  getFavourites(userId: string): Observable<any> {
+    let apiUrl = baseUrl + `favourites?userid=${userId}`;
+    return this.http.get<any>(apiUrl);
+  }
+
   getCommunityAverage(movieId: any): Observable<any> {
     let apiUrl = baseUrl + `userratings?movieid=${movieId}`;
     return this.http.get<any>(apiUrl);

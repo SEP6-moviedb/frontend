@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsByActor } from '../../models/statistics.model';
 import { ApiHttpService } from 'src/app/services/api-http.service'
-import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from "rxjs";
 import { ChartData, ChartOptions } from 'chart.js';
-
-declare const ChartData: any;
-declare const ChartOptions: any;
-
 
 @Component({
   selector: 'app-statistics',
@@ -16,10 +10,8 @@ declare const ChartOptions: any;
 })
 
 export class StatisticsComponent implements OnInit {
-
-  private routeSub!: Subscription;
-  popularActorsData?: ChartData<'bar'> 
-  popularMoviesData?: ChartData<'bar'> 
+  popularActorsData?: ChartData<'bar'>
+  popularMoviesData?: ChartData<'bar'>
 
   popularActorsChartOptions: ChartOptions = {
     responsive: true,
@@ -41,9 +33,7 @@ export class StatisticsComponent implements OnInit {
     }
   };
 
-
-  constructor(private apiHttpService: ApiHttpService,
-    private authService: AuthenticationService) { }
+  constructor(private apiHttpService: ApiHttpService) { }
 
   ngOnInit(): void {
     this.setActorStatistics();
@@ -58,7 +48,7 @@ export class StatisticsComponent implements OnInit {
 
       x = x.sort((a, b) => (a.popularity < b.popularity) ? 1 : -1)
 
-      for (var i = 0; i < x.length; i++) {
+      for (let i = 0; i < x.length; i++) {
         actorLabels.push(x[i].actorName);
         actorVoteAvg.push(x[i].voteAverage);
         actorPopularity.push(x[i].popularity/10);
@@ -81,8 +71,8 @@ export class StatisticsComponent implements OnInit {
 
       x = x.sort((a, b) => (a.movieUserRatingAvg < b.movieUserRatingAvg) ? 1 : -1)
 
-      for (var i = 0; i < x.length; i++) {
-        if (x[i].movieId != null ) { 
+      for (let i = 0; i < x.length; i++) {
+        if (x[i].movieId != null ) {
         movieLabels.push(x[i].movieName);
         movieUserRatingAvg.push(x[i].movieUserRatingAvg);
       }
@@ -91,7 +81,7 @@ export class StatisticsComponent implements OnInit {
       this.popularMoviesData = {
         labels: movieLabels,
         datasets: [
-          { label: 'Average rating from the MovieStar community members', data: movieUserRatingAvg }  
+          { label: 'Average rating from the MovieStar community members', data: movieUserRatingAvg }
         ],
       };
     })
