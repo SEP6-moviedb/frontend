@@ -9,5 +9,6 @@ export interface StatisticsByMovie {
   movieId: string;
   movieName: string;
   movieUserRatingAvg: number;
+  movieTmdbRatingAvg: number;
 }
 
