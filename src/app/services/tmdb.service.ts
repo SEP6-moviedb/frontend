@@ -29,31 +29,14 @@ export class TmdbService {
     return this.http.get<any>(searchUrl);
   }
 
-  getGenreList(type: string): Observable<any> {
-    const requestUrl = baseUrl + `genre/${type}/list?api_key=${apiKey}&language=en-US`;
+  getRecommendationByGenre(genre: string): Observable<any> {
+    const requestUrl = baseUrl + `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genre}`;
     return this.http.get(requestUrl);
   }
 
-  getTrendingList(type: string): Observable<any> {
-    const requestUrl = baseUrl + `trending/${type}/day?api_key=${apiKey}&language=en-US`;
+  getTrendingMovies(): Observable<any> {
+    const requestUrl = baseUrl + `trending/movie/day?api_key=${apiKey}&language=en-US`;
     return this.http.get(requestUrl);
-  }
-
-  getTrendingMovies() {
-    let apiUrl = baseUrl + `trending/movie/day?api_key=${apiKey}&language=en-US`;
-    return this.http.get<any>(apiUrl)
-      .toPromise()
-      .then(res => <tmdbMovie[]>res.results)
-      .then(data => {
-        return data; });
-  }
-
-  getRecommendationByGenre(genre: string) {
-    let apiUrl = baseUrl + `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genre}`;
-    return this.http.get<any>(apiUrl)
-      .toPromise()
-      .then(res => <tmdbMovie[]>res.results)
-      .then(data => { return data; });
   }
 
   getMovieByTmdbId(tmdbId: string) {

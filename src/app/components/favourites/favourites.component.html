@@ -1,10 +1,8 @@
 <div class="favourites flex-column d-flex align-items-center justify-content-center m-2 p-2">
   <h2>My Favourite Movies</h2>
   <div class="list-group" *ngFor="let movie of movies">
-    <div class="list-group-item">
-      <!--
-      <a href="#/specific-movie/{{movie.id}}">{{movie.title}} ({{movie.release_date | slice:0:4}})</h4></a>
-      -->
+    <div class="list-group-item border-0 m-auto">
+      <a href="#/specific-movie/{{movie.movieid}}"><p>📽️ {{movie.moviename}} </p></a>
     </div>
   </div>
 </div>
