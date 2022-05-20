@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import {actors, searchActor, tmdbMovie} from '../models/movie-star.model';
 
-
-const headers = new HttpHeaders().set('Content-Type', 'application/X-www-form-urlencoded');
 
 const baseUrl = 'https://api.themoviedb.org/3/';
 const apiKey = environment.tmdbApiKey;
@@ -19,6 +17,11 @@ export class TmdbService {
 
   searchMovie(term: string): Observable<any>{
     let searchUrl = baseUrl + `search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${term}`;
+    return this.http.get<any>(searchUrl);
+  }
+
+  searchPeople(term: string): Observable<any>{
+    let searchUrl = baseUrl + `search/person?api_key=${apiKey}&language=en-US&query=${term}&page=1&include_adult=false`;
     return this.http.get<any>(searchUrl);
   }
 

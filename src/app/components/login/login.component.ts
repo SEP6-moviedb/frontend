@@ -17,6 +17,7 @@ import {
 export class LoginComponent implements OnInit {
   //socialUser!: SocialUser;
   private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  errorText: string | null = null;
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit {
       if (r.status === 200)
         this.router.navigateByUrl("/").then(() => window.location.reload());
       else
-        this.router.navigateByUrl("/login")
+        this.errorText = "Couldn't log you in with those credentials, please try again."
     });
   }
 

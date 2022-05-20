@@ -4,17 +4,40 @@
   </div>
 
   <div class="row w-50 center">
-    <input (input)="searchMovie($event)" type="search" class="form-control" placeholder="Movie Name">
+    <div class="col-9 pe-0">
+    <input (input)="search($event)" type="search" class="form-control" placeholder="Search text">
+    </div>
+  <div class="col-3 ps-0">
+    <select class="form-select form-control" [(ngModel)]="searchType" (ngModelChange)="clearResults()">
+      <option value="movies">Movies</option>
+      <option value="people">People</option>
+    </select>
   </div>
-  <div class="row wrapper m-1">
-    <div class="no-res" *ngIf="results?.length === 0 && loading">Nothing matches this search.</div>
+  </div>
+  <div class="no-res" *ngIf="results?.length === 0 && loading">Nothing matches this search.</div>
+  <div class="row wrapper m-1" *ngIf="searchType === 'movies'">
     <div class="col-md-3" *ngFor="let movie of results">
-      <div class="movie-item" *ngIf="movie.poster_path !== 'https://image.tmdb.org/t/p/w400null'">
+      <div class="search-item" *ngIf="movie.poster_path !== 'https://image.tmdb.org/t/p/w400null'">
         <div class="pb-1">
         </div>
         <a href="#/specific-movie/{{movie.id}}"><img class="rounded" src="{{movie.poster_path}}" alt="{{movie.title}}">
           <h4 class="align-middle text-center">{{movie.title}} ({{movie.release_date | slice:0:4}})</h4></a>
         <p class="px-1 fst-italic">{{movie.overview | slice:0:200 }}{{movie.overview.length > 200 ? '...' : ''}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row wrapper m-1" *ngIf="searchType === 'people'">
+    <div class="col-md-4" *ngFor="let person of results">
+      <div class="search-item">
+        <div class="pb-1">
+        </div>
+        <a href="#/specific-actor/{{person.id}}">
+          <img class="rounded" src="{{person.profile_path}}" alt="{{person.name}}" *ngIf="person.profile_path !== 'https://image.tmdb.org/t/p/w200null'">
+          <div class="rounded" style="width:200px; height: 200px;" *ngIf="person.profile_path === 'https://image.tmdb.org/t/p/w200null'"></div>
+          <h4 class="align-middle text-center">{{person.name}}</h4></a>
+        <div class="list-group" *ngFor="let knownFor of person.known_for">
+          <a *ngIf="knownFor.title !== ''" href="#/specific-movie/{{knownFor.id}}" class="list-group-item list-group-item-action">{{knownFor.title}}</a>
+        </div>
       </div>
     </div>
   </div>
