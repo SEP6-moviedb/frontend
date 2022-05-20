@@ -2,6 +2,7 @@
   <h2>Sign up</h2>
   <p class="text-center">This awesome movie service requires you to sign up. <br> So go ahead and give us your personal details, we will do our
   best to keep them safe.</p>
+  <p *ngIf="errorText" class="text-danger strong">{{errorText}}</p>
   <main class="form-floating w-50">
    <form [formGroup]="signupForm" (ngSubmit)="signup()">
       <div class="form-floating my-2">
@@ -27,7 +28,7 @@
           <span *ngIf="passwordControl.errors['minlength']">Password must have at least 8 characters</span>
         </div>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="this.signupForm.invalid">Sign in</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="this.signupForm.invalid">Sign up</button>
     </form>
   </main>
 

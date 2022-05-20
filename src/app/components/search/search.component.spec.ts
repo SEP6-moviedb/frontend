@@ -59,7 +59,7 @@ describe('SearchComponent', () => {
     // Arrange
 
     // Act
-    component.searchMovie("pirate")
+    component.search("pirate")
 
     // TODO: Make this work properly, maybe after fixing search.
     // Assert

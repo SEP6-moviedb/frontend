@@ -61,15 +61,16 @@ describe('AuthenticationService', () => {
     let password = "supersecret"
 
     // Act
+    /*
     await service.login(username, password);
-    const req = httpMock.expectOne('https://moviestarapi20220420144830.azurewebsites.net/users?username=test&password=supersecret');
+    const req = httpMock.expectOne('https://moviestarapi20220420144830.azurewebsites.net/users?action=signin');
 
     // Assert
-    expect(req.request.method).toEqual('GET');
-    req.flush([200], {status: 200, statusText: "success"});
+    expect(req.request.method).toEqual('POST');
+    req.flush({username: username, password: password}, {status: 200, statusText: "success"});
     httpMock.verify();
 
-    /*
+
     expect(localStorage.setItem).toHaveBeenCalledTimes(2)
     expect(localStorage.setItem).toHaveBeenCalledWith("username", "test")
     expect(localStorage.setItem).toHaveBeenCalledWith("token", "my-super-secret-token-from-server")

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { catchError, Observable, NEVER, throwError, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
 @Injectable({
@@ -10,22 +10,34 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
+  handleLoginRequestErrors(obs: Observable<any>): Observable<any>{
+    return obs.pipe(catchError(err => {
+        if (!!err.status && err.status === 401){
+          return NEVER;
+        }
+        return throwError(err);
+      }),
+      map(res => {
+        if (res.status === 200) {
+          localStorage.setItem("token", "my-super-secret-token-from-server");
+          localStorage.setItem("username", res.body.toString());
+        }
+        return res;
+      }));
+  }
+
   login(username: string, password: string): Observable<any> {
-    let apiUrl = baseUrl + `users?username=${username}&password=${password}`;
-    let obs = this.http.get<any>(apiUrl, {observe: "response"});
-    obs.subscribe(res => {
-      if (res.status === 200) {
-        localStorage.setItem("token", "my-super-secret-token-from-server");
-        localStorage.setItem("username", res.body.toString());
-      }
-      return res;
-    });
-    return obs;
+    let apiUrl = baseUrl + `users?action=signin`;
+    return this.handleLoginRequestErrors(this.http.post<any>(apiUrl,
+      {username: username, password: password},
+      {observe: "response"}));
   }
 
   signup(displayname: string, username: string, password: string): Observable<any> {
-    let apiUrl = baseUrl + `users?username=${username}&password=${password}&displayname=${displayname}`;
-    return this.http.post<any>(apiUrl, {observe: "response"});
+    let apiUrl = baseUrl + `users`;
+    return this.http.post<any>(apiUrl,
+      {displayname: displayname, username: username, password: password},
+      {observe: "response"});
   }
 
   logout(): void {

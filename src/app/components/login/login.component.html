@@ -3,6 +3,7 @@
   <p class="text-center">To use this awesome movie service you need to sign in.
     <br> So go ahead and enter your details, we will be ready to sign you in as soon as you press sign in.
   </p>
+  <p *ngIf="errorText" class="text-danger strong">{{errorText}}</p>
 <main class="form-floating w-50">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-floating my-2">

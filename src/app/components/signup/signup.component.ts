@@ -12,6 +12,7 @@ import {SocialAuthService} from "@abacritt/angularx-social-login";
 })
 export class SignupComponent implements OnInit {
   private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  errorText: string | null = null;
 
   signupForm = new FormGroup({
     displayname: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -47,9 +48,9 @@ export class SignupComponent implements OnInit {
     let password = this.f['password'].value
     this.authenticationService.signup(displayname, username, password).subscribe(r => {
       if (r.status === 201)
-        this.router.navigateByUrl("/login").then(() => window.location.reload());
+        this.router.navigateByUrl("/login");
       else
-        this.router.navigateByUrl("/signup")
+        this.errorText = 'There was an error when creating your account, please try again.'
     });
   }
 }
