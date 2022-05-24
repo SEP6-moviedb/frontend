@@ -29,14 +29,14 @@ import {
   SocialAuthServiceConfig, GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import {environment} from "../environments/environment.prod";
-import { ActorsComponent } from './components/actors/actors.component';
-import { TableComponent } from './components/table/table.component';
 import {AgGridModule} from "ag-grid-angular";
 import { SpecificActorComponent } from './components/specific-actor/specific-actor.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SignupComponent } from './components/signup/signup.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
+import {KnownforComponent} from "./components/known-for/known-for.component";
+
 
 @NgModule({
   declarations: [
@@ -49,12 +49,11 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
     SearchComponent,
     LoginComponent,
     HomeComponent,
-    ActorsComponent,
     StatisticsComponent,
-    TableComponent,
     SpecificActorComponent,
     SignupComponent,
     FavouritesComponent,
+    KnownforComponent,
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([

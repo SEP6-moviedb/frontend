@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {actors, searchActor} from "../../models/movie-star.model";
-import {TmdbService} from "../../services/tmdb.service";
 import {Subscription} from "rxjs";
+import {searchActor} from "../../models/movie-star.model";
 import {ActivatedRoute} from "@angular/router";
+import {TmdbService} from "../../services/tmdb.service";
 import {MovieUtilService} from "../../services/movie-util-service.service";
 
-
 @Component({
-  selector: 'app-specific-actor',
-  templateUrl: './specific-actor.component.html',
-  styleUrls: ['./specific-actor.component.css']
+  selector: 'app-known-for',
+  templateUrl: './known-for.component.html',
+  styleUrls: ['./known-for.component.css']
 })
-export class SpecificActorComponent implements OnInit {
+export class KnownforComponent implements OnInit {
+
   responsiveOptions: any;
-  actor: actors = new actors;
   private routeSub!: Subscription;
+  actors: searchActor = new searchActor();
 
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService, private util: MovieUtilService) {
     this.responsiveOptions = [{
@@ -37,14 +37,8 @@ export class SpecificActorComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      this.getActor(params['Id']);
-
+      this.getKnownFor(params['Id']);
     });
-
-  }
-
-  async getActor(id: number) {
-  this.actor = await this.tmdbService.getActorById(id);
 
   }
 
@@ -52,4 +46,9 @@ export class SpecificActorComponent implements OnInit {
     this.routeSub.unsubscribe();
   }
 
+  async getKnownFor(name: string) {
+    this.tmdbService.people(name).subscribe(res => {
+      this.actors = this.util.sanitizePeople(res.results)[0];
+    })
+  }
 }

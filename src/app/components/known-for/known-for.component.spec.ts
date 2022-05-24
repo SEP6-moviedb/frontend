@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { KnownforComponent } from './known-for.component';
+import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientModule} from "@angular/common/http";
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('Known-forComponent', () => {
+  let component: KnownforComponent;
+  let fixture: ComponentFixture<KnownforComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      declarations: [ TableComponent ]
+      imports: [RouterTestingModule, HttpClientModule],
+      declarations: [ KnownforComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(KnownforComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

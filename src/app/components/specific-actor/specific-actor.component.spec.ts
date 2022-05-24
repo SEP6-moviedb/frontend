@@ -10,7 +10,7 @@ describe('SpecificActorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [ SpecificActorComponent ]
     })
     .compileComponents();

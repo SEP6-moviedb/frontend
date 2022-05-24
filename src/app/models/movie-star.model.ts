@@ -104,13 +104,13 @@ export interface KnownFor {
     original_name: string;
   }
 
-  export interface searchActor {
-    profile_path: string;
-    adult: boolean;
-    id: number;
-    known_for: KnownFor[];
-    name: string;
-    popularity: number;
+  export class searchActor {
+    profile_path!: string;
+    adult!: boolean;
+    id!: number;
+    known_for!: KnownFor[];
+    name!: string;
+    popularity!: number;
   }
 
 

@@ -25,6 +25,7 @@ export class MovieUtilService {
       person.known_for.forEach(knownFor => {
         if (knownFor.title == undefined)
           knownFor.title = knownFor.name;
+        knownFor.backdrop_path = 'https://image.tmdb.org/t/p/w400' + knownFor.backdrop_path;
         return knownFor;
       })
       return person;

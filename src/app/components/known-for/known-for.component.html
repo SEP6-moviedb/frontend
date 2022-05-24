@@ -1,0 +1,26 @@
+<div class="container"  style="margin-top: 100px;">
+  <div *ngFor="let known of actors.known_for">
+  <div class="col">
+      <div class="card" style="padding: 20px; margin: 20px;">
+        <a href="#/specific-movie/{{known.id}}">
+            <div class="card-body" style="padding: 10px">
+              <a href="#/specific-movie/{{known.id}}" ><img src="https://image.tmdb.org/t/p/w200 {{known.backdrop_path}}" class="card-img-bottom" alt="Movie Poster" >
+                <ng-container *ngIf="known.name; else elseif1"><h4 class="align-middle text-center" style="height: 10px; margin-top: 10px;">
+                  {{known.name}}
+                </h4></ng-container>
+                <ng-template #elseif1>
+                  <ng-container *ngIf="known.title"><h4 class="align-middle text-center" style="height: 10px; margin-top: 10px;">
+                    {{known.title}}
+                  </h4></ng-container>
+                </ng-template></a>
+            </div>
+        </a>
+      </div>
+  </div>
+  </div>
+</div>
+<div class="container" style="margin-bottom: 100px;">  <div class="border-mine" style="padding: 20px; margin: 20px;">
+  <a href="#/specific-actor/{{actors.id}}" class="align-middle text-center">
+    <h2>Back to {{actors.name}}</h2>
+  </a>
+</div></div>
