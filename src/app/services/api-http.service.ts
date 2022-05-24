@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {comment, Movie} from '../models/movie-star.model';
 import { StatisticsByActor, StatisticsByMovie } from '../models/statistics.model';
+import { environment } from "../../environments/environment.prod";
 
-const baseUrl = 'https://moviestarapi.azurewebsites.net/';
+const baseUrl = environment.movieStarApiUrl;
 @Injectable({
   providedIn: 'root'
 })
@@ -59,19 +60,11 @@ export class ApiHttpService {
   delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
-  }
-  findByTitle(title: any): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${baseUrl}?title=${title}`);
-  }
 
   getActorStatistics(): Observable<StatisticsByActor[]> {
     let apiUrl = `${baseUrl}/actorstatistics`;
-    //let apiUrl = "https://localhost:7183/" + `actorstatistics`;
     let obs = this.http.get<StatisticsByActor[]>(apiUrl);
     obs.subscribe(res => {
-      //console.log(res);
       return res
     });
     return obs;
@@ -79,10 +72,8 @@ export class ApiHttpService {
 
   getMovieStatistics(): Observable<StatisticsByMovie[]> {
     let apiUrl = `${baseUrl}/moviestatistics`;
-    //let apiUrl = "https://localhost:7183/" + `moviestatistics`;
     let obs = this.http.get<StatisticsByMovie[]>(apiUrl);
     obs.subscribe(res => {
-      //console.log(res);
       return res
     });
     return obs;

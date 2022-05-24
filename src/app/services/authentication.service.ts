@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { catchError, Observable, NEVER, throwError, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment.prod";
 
-const baseUrl = 'https://moviestarapi.azurewebsites.net/';
+const baseUrl = environment.movieStarApiUrl;
 @Injectable({
   providedIn: 'root'
 })
