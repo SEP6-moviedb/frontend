@@ -8,7 +8,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-floating my-2">
       <input type="email" class="form-control" id="floatingInput" [formControlName]="'username'">
-      <label for="floatingInput">Username</label>
+      <label for="floatingInput">Email</label>
       <div class="text-danger" *ngIf="loginForm.invalid && usernameControl?.touched && usernameControl.errors">
         <span *ngIf="usernameControl.errors['required']">Username is required</span>
         <span *ngIf="usernameControl.errors['pattern']">Username must be an email</span>
