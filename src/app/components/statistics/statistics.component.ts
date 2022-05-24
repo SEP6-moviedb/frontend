@@ -68,20 +68,23 @@ export class StatisticsComponent implements OnInit {
     this.apiHttpService.getMovieStatistics().subscribe(x => {
       let movieLabels: string[] = [];
       let movieUserRatingAvg: number[] = [];
+      let movieTmdbRatingAvg: number[] = [];
 
       x = x.sort((a, b) => (a.movieUserRatingAvg < b.movieUserRatingAvg) ? 1 : -1)
 
       for (let i = 0; i < x.length; i++) {
         if (x[i].movieId != null ) {
         movieLabels.push(x[i].movieName);
-        movieUserRatingAvg.push(x[i].movieUserRatingAvg);
+          movieUserRatingAvg.push(x[i].movieUserRatingAvg);
+          movieTmdbRatingAvg.push(x[i].movieTmdbRatingAvg / 2);
       }
       }
 
       this.popularMoviesData = {
         labels: movieLabels,
         datasets: [
-          { label: 'Average movie rating from the MovieStar community', data: movieUserRatingAvg }
+          { label: 'Average movie rating from the MovieStar community', data: movieUserRatingAvg },
+          { label: 'Average movie rating from tmdb (divided by two)', data: movieTmdbRatingAvg }
         ],
       };
     })

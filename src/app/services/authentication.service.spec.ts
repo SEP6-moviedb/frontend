@@ -63,7 +63,7 @@ describe('AuthenticationService', () => {
     // Act
     /*
     await service.login(username, password);
-    const req = httpMock.expectOne('https://moviestarapi20220420144830.azurewebsites.net/users?action=signin');
+    const req = httpMock.expectOne('https://moviestarapi.azurewebsites.net/users?action=signin');
 
     // Assert
     expect(req.request.method).toEqual('POST');

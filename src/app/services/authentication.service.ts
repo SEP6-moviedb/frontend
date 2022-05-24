@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, NEVER, throwError, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
+const baseUrl = 'https://moviestarapi.azurewebsites.net/';
 @Injectable({
   providedIn: 'root'
 })

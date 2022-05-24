@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {comment, Movie} from '../models/movie-star.model';
 import { StatisticsByActor, StatisticsByMovie } from '../models/statistics.model';
 
-const baseUrl = 'https://moviestarapi20220420144830.azurewebsites.net/';
+const baseUrl = 'https://moviestarapi.azurewebsites.net/';
 @Injectable({
   providedIn: 'root'
 })
