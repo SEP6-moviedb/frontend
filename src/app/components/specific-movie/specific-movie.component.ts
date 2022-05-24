@@ -20,6 +20,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
   ratingCtrl = new FormControl(null, Validators.required);
   private routeSub!: Subscription;
   communityRating: number = 0;
+  communityCount: number = 0;
 
   commentForm = this.formBuilder.group({
     comment: ''
@@ -35,7 +36,7 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.getMovieById(params['tmdbId']);
-      this.setAverageRating(params['tmdbId']);
+      this.getAverageRating(params['tmdbId']);
       this.getComments(params['tmdbId']);
       this.getCredits(params['tmdbId']);
     });
@@ -56,10 +57,11 @@ export class SpecificMovieComponent implements OnInit, OnDestroy {
     });
   }
 
-  setAverageRating(id: string){
+  getAverageRating(id: string){
     this.apiHttpService.getCommunityAverage(id).subscribe(x => {
       if (x[0] !== undefined)
         this.communityRating = x[0].userRatingAvg
+        this.communityCount = x[0].userRatingCount
     })
   }
 

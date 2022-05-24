@@ -20,15 +20,15 @@
       <img src="{{movie.poster_path}}" class="img-fluid detail">
     </div>
     <div class="col-sm-6 my-auto">
-      <h1>{{movie.title}}</h1>
+      <h1>{{movie.title}} ({{movie.release_date | slice:0:4}})</h1>
       <br>
       <div class="row">
         <div class="col">
-          <p class="d-inline">Movie rating:</p>
+          <p class="d-inline">Tmdb votes: {{movie.vote_count}}</p>
           <ngb-rating [max]="5" [starTemplate]="star"  [(rate)]="movie.stars" [readonly]="true"></ngb-rating></div>
         <br>
         <div class="col">
-          <p class="d-inline">MovieStar community rating:</p>
+          <p class="d-inline">MovieStar community votes: {{communityCount}}</p>
           <ngb-rating class="mt-0 pt-0" title="Rate this movie" [max]="5" [starTemplate]="heart" [(rate)]="communityRating" (rateChange)="rateChanged($event)" [formControl]="ratingCtrl" [readonly]="false"></ngb-rating>
         </div>
       </div>
