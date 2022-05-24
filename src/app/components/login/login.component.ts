@@ -10,7 +10,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  private emailPattern = "[a-z_A-Z0-9._%+-]+@[a-z_A-Z0-9.-]+\.[a-z_A-Z]{2,4}$";
   errorText: string | null = null;
 
   loginForm = new FormGroup({
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     let username = this.f['username'].value
     let password = this.f['password'].value
-    this.authenticationService.login(username, password).subscribe(r => {
+    this.authenticationService.login(username.toLowerCase(), password).subscribe(r => {
       if (r.status === 200)
         this.router.navigateByUrl("/").then(() => window.location.reload());
       else
