@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  private emailPattern = "[a-z_A-Z0-9._%+-]+@[a-z_A-Z0-9.-]+\.[a-z_A-Z]{2,4}$";
   errorText: string | null = null;
 
   signupForm = new FormGroup({
@@ -44,7 +44,8 @@ export class SignupComponent implements OnInit {
     let displayname = this.f['displayname'].value
     let username = this.f['username'].value
     let password = this.f['password'].value
-    this.authenticationService.signup(displayname, username, password).subscribe(r => {
+    console.log(username.toLowerCase())
+    this.authenticationService.signup(displayname, username.toLowerCase(), password).subscribe(r => {
       if (r.status === 201)
         this.router.navigateByUrl("/login");
       else
