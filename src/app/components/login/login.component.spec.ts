@@ -4,22 +4,15 @@ import { LoginComponent } from './login.component';
 import {AuthenticationService} from "../../services/authentication.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "../../app-routing.module";
-import {SocialAuthService, SocialLoginModule} from "@abacritt/angularx-social-login";
-import SpyObj = jasmine.SpyObj;
-import createSpyObj = jasmine.createSpyObj;
-import {Observable} from "rxjs";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let socialAuthServiceMock: SpyObj<SocialAuthService>;
-
-  socialAuthServiceMock = createSpyObj('socialAuthService', ['authState', 'initState', 'refreshAuthToken', 'signIn', 'signOut']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, AppRoutingModule, SocialLoginModule],
-      providers: [AuthenticationService, { provide: SocialAuthService, useValue: {...socialAuthServiceMock, authState: new Observable()} }],
+      imports: [HttpClientModule, AppRoutingModule],
+      providers: [AuthenticationService],
       declarations: [ LoginComponent ]
     })
     .compileComponents();

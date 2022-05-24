@@ -24,10 +24,6 @@ import {AuthenticationInterceptor} from "./authentication.interceptor";
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig, GoogleLoginProvider,
-} from '@abacritt/angularx-social-login';
 import {environment} from "../environments/environment.prod";
 import { ActorsComponent } from './components/actors/actors.component';
 import { TableComponent } from './components/table/table.component';
@@ -68,23 +64,9 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
     ReactiveFormsModule,
     FormsModule,
     AgGridModule,
-    SocialLoginModule,
     NgChartsModule
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.googleClientId),
-          },
-        ],
-      } as SocialAuthServiceConfig,
-    },
-    ApiHttpService,
     TmdbService,
     AuthenticationInterceptor,
     {provide : LocationStrategy , useClass: HashLocationStrategy}

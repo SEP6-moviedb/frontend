@@ -3,11 +3,6 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthenticationService} from "../../services/authentication.service";
 import {Location} from '@angular/common';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +10,6 @@ import {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  //socialUser!: SocialUser;
   private emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   errorText: string | null = null;
 
@@ -27,17 +21,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
-    private location: Location,
-    private socialAuthService: SocialAuthService
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    /*
-    this.socialAuthService.authState.subscribe(user => {
-      this.socialUser = user;
-      console.log(this.socialUser);
-    });
-    console.log(this.socialAuthService)*/
   }
 
   get usernameControl(): FormControl {
@@ -60,10 +47,4 @@ export class LoginComponent implements OnInit {
         this.errorText = "Couldn't log you in with those credentials, please try again."
     });
   }
-
-  /*
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-  */
 }
