@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {actors, searchActor} from "../../models/movie-star.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {actors} from "../../models/movie-star.model";
 import {TmdbService} from "../../services/tmdb.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {MovieUtilService} from "../../services/movie-util-service.service";
 
 
 @Component({
@@ -11,12 +10,12 @@ import {MovieUtilService} from "../../services/movie-util-service.service";
   templateUrl: './specific-actor.component.html',
   styleUrls: ['./specific-actor.component.css']
 })
-export class SpecificActorComponent implements OnInit {
+export class SpecificActorComponent implements OnInit, OnDestroy {
   responsiveOptions: any;
   actor: actors = new actors;
   private routeSub!: Subscription;
 
-  constructor(private route: ActivatedRoute, private tmdbService: TmdbService, private util: MovieUtilService) {
+  constructor(private route: ActivatedRoute, private tmdbService: TmdbService) {
     this.responsiveOptions = [{
       breakpoint: '4096px',
       numVisible: 3,
@@ -38,7 +37,6 @@ export class SpecificActorComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.getActor(params['Id']);
-
     });
 
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {searchActor} from "../../models/movie-star.model";
 import {ActivatedRoute} from "@angular/router";
@@ -10,7 +10,7 @@ import {MovieUtilService} from "../../services/movie-util-service.service";
   templateUrl: './known-for.component.html',
   styleUrls: ['./known-for.component.css']
 })
-export class KnownforComponent implements OnInit {
+export class KnownforComponent implements OnInit, OnDestroy {
 
   responsiveOptions: any;
   private routeSub!: Subscription;
